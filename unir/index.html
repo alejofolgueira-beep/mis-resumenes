@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<title>Sumar el celular</title>
+<link rel="icon" href="../img/logo.png" type="image/png">
+<style>
+/* Adonde lleva el QR de Configuración › Celulares cuando se escanea con la cámara común. El código viene después de
+   '#': no se manda a ningún servidor, se borra de la dirección al entrar y solo se le pasa a la app. */
+:root {
+  --fondo: #f5f5fb; --papel: #ffffff; --tinta: #14152e; --tinta-2: #53556e; --linea: #e0e0ee;
+  --coral: #d81b60; --sobre-coral: #ffffff; --indigo: #4a2fc9; --aviso: #fbefd9; --sobre-aviso: #6b3f06;
+  --texto: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --fondo: #0b0d2a; --papel: #151838; --tinta: #eeeef8; --tinta-2: #b0b1c9; --linea: #2b2f63;
+    --coral: #ff5c9a; --sobre-coral: #1a0b2e; --indigo: #a99bff; --aviso: #3a2c18; --sobre-aviso: #f3d39b;
+  }
+}
+:root[data-theme="dark"] {
+  --fondo: #0b0d2a; --papel: #151838; --tinta: #eeeef8; --tinta-2: #b0b1c9; --linea: #2b2f63;
+  --coral: #ff5c9a; --sobre-coral: #1a0b2e; --indigo: #a99bff; --aviso: #3a2c18; --sobre-aviso: #f3d39b;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--fondo); color: var(--tinta); font: 17px/1.5 var(--texto); }
+main { max-width: 460px; margin: 0 auto; padding: 32px 16px 48px; display: flex; flex-direction: column; gap: 16px; }
+.cabeza { display: flex; align-items: center; gap: 12px; }
+.cabeza img { width: 52px; height: 52px; border-radius: 12px; }
+.cabeza b { font-size: 20px; }
+h1 { font-size: 26px; line-height: 1.2; margin: 4px 0 0; }
+p { margin: 0; color: var(--tinta-2); }
+.caja { background: var(--papel); border: 1px solid var(--linea); border-radius: 14px; padding: 20px; display: flex; flex-direction: column; gap: 12px; }
+.boton { display: block; text-align: center; text-decoration: none; font-weight: 600; font-size: 17px; border-radius: 999px; padding: 14px 20px; }
+.primario { background: var(--coral); color: var(--sobre-coral); }
+.secundario { border: 1px solid var(--linea); color: var(--tinta); }
+ol { margin: 0; padding-left: 20px; color: var(--tinta-2); display: grid; gap: 6px; }
+.aviso { background: var(--aviso); color: var(--sobre-aviso); border-radius: 10px; padding: 12px 14px; font-size: 15px; }
+.chico { font-size: 14px; }
+a { color: var(--indigo); }
+[hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<main>
+  <div class="cabeza"><img src="../img/logo.png" alt=""><b>Mis Resúmenes</b></div>
+
+  <section id="con-codigo" hidden>
+    <div class="caja">
+      <h1>Sumá este celular a la libreta de tu familia</h1>
+      <p class="aviso" id="falta" hidden>Todavía no está la app en este celular: descargala con el botón de abajo, instalala y volvé a tocar <b>Abrir en Mis Resúmenes</b>.</p>
+      <p id="txt-android">Tocá el botón y la app se abre con el código: en unos segundos queda con todo.</p>
+      <a class="boton primario" id="abrir" href="#">Abrir en Mis Resúmenes</a>
+      <p class="chico">¿No se abre? Es que todavía no la tenés instalada:</p>
+      <a class="boton secundario" href="https://github.com/alejofolgueira-beep/mis-resumenes/releases/latest/download/Mis-Resumenes-Android.apk">Descargar la app para Android</a>
+      <ol class="chico">
+        <li>Abrí el archivo descargado. Si Android pregunta, permití instalar apps de ese origen.</li>
+        <li>Volvé a esta página y tocá <b>Abrir en Mis Resúmenes</b>. Si se cerró, escaneá otra vez el código de la compu.</li>
+      </ol>
+    </div>
+    <p class="aviso" id="no-android" hidden>Por ahora la app es para Android: la de iPhone viene pronto.</p>
+    <p class="chico">El código lleva la clave de tu familia y no sale de este teléfono. Sirve solo para este celular.</p>
+  </section>
+
+  <section id="sin-codigo" hidden>
+    <div class="caja">
+      <h1>Falta el código</h1>
+      <p>Para sumar un celular, en la compu abrí <b>Configuración › Celulares</b>, tocá <b>Mostrar el código</b> y escanealo con la cámara del celular.</p>
+      <a class="boton secundario" href="../#descargar">Ir a las descargas</a>
+    </div>
+  </section>
+</main>
+<script>
+(function () {
+  "use strict";
+  var codigo = location.hash.slice(1).trim();
+  // Que el código no quede en la dirección (ni en el historial con esta página).
+  var falta = /[?&]falta=1/.test(location.search);
+  if (codigo) history.replaceState(null, "", location.pathname);
+  if (falta) document.getElementById("falta").hidden = false;
+  var valido = /^[A-Za-z0-9_-]{40,}$/.test(codigo);
+  document.getElementById(valido ? "con-codigo" : "sin-codigo").hidden = false;
+  if (!valido) return;
+  var android = /Android/i.test(navigator.userAgent);
+  var abrir = document.getElementById("abrir");
+  if (android) {
+    // Sin la app instalada, Chrome vuelve acá avisando que falta (con el código, para no tener que escanear de nuevo).
+    var vuelta = encodeURIComponent(location.origin + location.pathname + "?falta=1#" + codigo);
+    abrir.href = "intent://unir/" + codigo + "#Intent;scheme=misresumenes;package=ar.misresumenes.app;S.browser_fallback_url=" + vuelta + ";end";
+  } else {
+    abrir.href = "misresumenes://unir/" + codigo;
+    document.getElementById("no-android").hidden = false;
+  }
+})();
+</script>
+</body>
+</html>
