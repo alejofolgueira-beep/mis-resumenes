@@ -54,14 +54,14 @@ body {
   margin: 0;
   background: var(--fondo);
   color: var(--tinta);
-  font: 17px/1.55 "Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font: 16px/1.55 "Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; }
 h1, h2, h3 { font-family: "Bricolage Grotesque", "Source Sans 3", sans-serif; letter-spacing: -0.02em; line-height: 1.1; margin: 0; }
-h2 { font-size: clamp(30px, 4.6vw, 46px); font-weight: 800; }
-h3 { font-size: 20px; font-weight: 700; }
+h2 { font-size: clamp(24px, 3vw, 34px); font-weight: 800; }
+h3 { font-size: 18px; font-weight: 700; }
 p { margin: 0; }
 .envoltura { width: min(1180px, 100% - 32px); margin: 0 auto; }
 .chico { font-size: 14px; color: var(--tinta-2); }
@@ -84,8 +84,8 @@ p { margin: 0; }
 
 .boton {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  padding: 12px 20px; border-radius: 999px; border: 0; cursor: pointer;
-  font: 700 16px "Source Sans 3", sans-serif; text-decoration: none; white-space: nowrap;
+  padding: 11px 18px; border-radius: 999px; border: 0; cursor: pointer;
+  font: 700 15px "Source Sans 3", sans-serif; text-decoration: none; white-space: nowrap;
   transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
 }
 .boton:hover { transform: translateY(-1px); }
@@ -105,12 +105,12 @@ p { margin: 0; }
     radial-gradient(700px 520px at -10% 110%, rgba(18, 179, 147, 0.35), transparent 60%),
     linear-gradient(160deg, #1b1e6e 0%, #2b1f86 55%, #3d23a8 100%);
 }
-.portada .envoltura { display: grid; grid-template-columns: 1.02fr 1.18fr; gap: 40px; align-items: center; padding: 72px 0 84px; }
+.portada .envoltura { display: grid; grid-template-columns: 0.82fr 1.18fr; gap: 44px; align-items: center; padding: 48px 0 64px; }
 .etiqueta { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.22); font-size: 14px; font-weight: 600; }
 .etiqueta i { width: 8px; height: 8px; border-radius: 50%; background: #3fe0bd; box-shadow: 0 0 0 4px rgba(63, 224, 189, 0.25); }
-.portada h1 { font-size: clamp(40px, 6.4vw, 70px); font-weight: 800; margin: 18px 0 18px; }
+.portada h1 { font-size: clamp(32px, 4.2vw, 50px); font-weight: 800; margin: 16px 0 14px; }
 .portada h1 em { font-style: normal; background: linear-gradient(90deg, #6ff0d4, #ffd1e3); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.portada .bajada { font-size: clamp(18px, 2.1vw, 21px); color: rgba(255, 255, 255, 0.84); max-width: 560px; }
+.portada .bajada { font-size: 17px; color: rgba(255, 255, 255, 0.84); max-width: 520px; }
 .acciones { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
 .portada .nota { margin-top: 16px; font-size: 14px; color: rgba(255, 255, 255, 0.7); }
 .escena { position: relative; }
@@ -120,27 +120,30 @@ p { margin: 0; }
 .ventana .puntos i:first-child { background: #ff5f57; } .ventana .puntos i:nth-child(2) { background: #febc2e; } .ventana .puntos i:nth-child(3) { background: #28c840; }
 .telefono { border-radius: 30px; padding: 7px; background: #0b0b10; box-shadow: 0 30px 70px -20px rgba(0, 0, 0, 0.7); border: 1px solid rgba(255, 255, 255, 0.12); }
 .telefono img { border-radius: 24px; }
-.escena .telefono { position: absolute; width: 31%; right: -3%; bottom: -16%; }
+.escena { padding-right: 17%; }
+.escena .ventana { background: #fff; }
+.escena .ventana .puntos { background: #eceaf3; }
+.escena .telefono { position: absolute; width: 27%; right: 0; bottom: -12%; background: #fff; border-color: rgba(0, 0, 0, 0.12); }
 @media (max-width: 920px) {
   .portada .envoltura { grid-template-columns: 1fr; padding: 48px 0 72px; }
-  .escena { margin: 8px 6% 10% 0; }
+  .escena { margin: 8px 0 10% 0; }
 }
 
 /* ---------- secciones ---------- */
-section { padding: 96px 0; }
-.cabeza { max-width: 760px; margin-bottom: 40px; }
+section { padding: 72px 0; }
+.cabeza { max-width: 760px; margin-bottom: 32px; }
 .cabeza .antes { display: inline-block; font-weight: 700; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--violeta); margin-bottom: 12px; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .cabeza .antes { color: #a996ff; } }
-.cabeza p { margin-top: 14px; font-size: 19px; color: var(--tinta-2); }
+.cabeza p { margin-top: 12px; font-size: 17px; color: var(--tinta-2); }
 .alterna { background: var(--fondo-2); }
-@media (max-width: 700px) { section { padding: 68px 0; } }
+@media (max-width: 700px) { section { padding: 52px 0; } }
 
 /* chips de funciones */
 .chips { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 36px; }
 .chip { display: flex; gap: 12px; align-items: flex-start; padding: 16px; border-radius: 14px; background: var(--papel); border: 1px solid var(--linea); }
 .chip .ic { flex: 0 0 38px; height: 38px; border-radius: 11px; display: grid; place-items: center; font-size: 19px; background: var(--fondo-2); }
-.chip b { display: block; font-size: 16px; }
-.chip span { font-size: 14px; color: var(--tinta-2); line-height: 1.4; }
+.chip b { display: block; font-size: 15px; }
+.chip span { font-size: 13px; color: var(--tinta-2); line-height: 1.4; }
 @media (max-width: 980px) { .chips { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 560px) {
   .chips { gap: 8px; }
@@ -155,36 +158,38 @@ section { padding: 96px 0; }
 .pestanas { display: flex; gap: 6px; padding: 10px; overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid var(--linea); background: color-mix(in srgb, var(--fondo-2) 60%, var(--papel)); }
 .pestanas::-webkit-scrollbar { display: none; }
 .pestanas button {
-  display: inline-flex; align-items: center; gap: 8px; flex: 0 0 auto;
-  padding: 9px 14px; border-radius: 11px; border: 1px solid transparent; background: transparent;
-  font: 600 15px "Source Sans 3", sans-serif; color: var(--tinta-2); cursor: pointer;
+  display: inline-flex; align-items: center; gap: 7px; flex: 0 0 auto;
+  padding: 8px 12px; border-radius: 10px; border: 1px solid transparent; background: transparent;
+  font: 600 14px "Source Sans 3", sans-serif; color: var(--tinta-2); cursor: pointer;
 }
 .pestanas button svg { width: 18px; height: 18px; }
 .pestanas button:hover { color: var(--tinta); background: var(--papel); }
 .pestanas button[aria-selected="true"] { color: var(--tinta); background: var(--papel); border-color: var(--linea); box-shadow: 0 2px 8px -4px rgba(21, 21, 43, 0.3); }
 .pestanas button[aria-selected="true"] svg { color: var(--verde); }
-.panel-vista { display: grid; grid-template-columns: 300px minmax(0, 1fr); }
-.panel-vista .texto { padding: 26px; border-right: 1px solid var(--linea); }
-.panel-vista .texto h3 { margin-bottom: 10px; }
-.panel-vista .texto p { color: var(--tinta-2); }
-.panel-vista .texto ul { margin: 14px 0 0; padding-left: 18px; color: var(--tinta-2); font-size: 15px; }
-.panel-vista .texto li { margin: 4px 0; }
-.panel-vista .imagen { background: #151513; display: flex; align-items: flex-start; justify-content: center; max-height: 640px; overflow: hidden; cursor: zoom-in; }
+.panel-vista { display: block; }
+.panel-vista .texto { padding: 18px 22px; border-bottom: 1px solid var(--linea); display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 6px 28px; align-items: start; }
+.panel-vista .texto h3 { grid-column: 1; }
+.panel-vista .texto p { grid-column: 1; color: var(--tinta-2); font-size: 15px; }
+.panel-vista .texto ul { grid-column: 2; grid-row: 1 / span 3; margin: 0; padding-left: 18px; color: var(--tinta-2); font-size: 14px; }
+.panel-vista .texto li { margin: 3px 0; }
+.panel-vista .texto .contador { grid-column: 1; margin-top: 4px; }
+.panel-vista .imagen { background: #151513; display: flex; align-items: flex-start; justify-content: center; max-height: 780px; overflow: hidden; cursor: zoom-in; }
 .panel-vista .imagen img { width: 100%; height: auto; object-fit: cover; object-position: top; }
 .panel-vista .imagen.cel { padding: 18px 0; background: linear-gradient(160deg, #1b1e6e, #3d23a8); }
 .panel-vista .imagen.cel img { width: auto; max-height: 600px; border-radius: 22px; border: 6px solid #0b0b10; }
-.contador { margin-top: 16px; font-size: 13px; color: var(--tinta-3); }
-@media (max-width: 860px) {
-  .panel-vista { grid-template-columns: 1fr; }
-  .panel-vista .texto { border-right: 0; border-bottom: 1px solid var(--linea); padding: 20px; }
+.contador { font-size: 12px; color: var(--tinta-3); }
+@media (max-width: 760px) {
+  .panel-vista .texto { grid-template-columns: 1fr; padding: 16px; }
+  .panel-vista .texto ul { grid-column: 1; grid-row: auto; }
   .panel-vista .imagen { max-height: 520px; }
 }
 
 /* ---------- cómo entran los datos ---------- */
 .flujo { background: var(--papel); border: 1px solid var(--linea); border-radius: var(--radio); box-shadow: var(--sombra); padding: 28px; }
 .flujo svg { width: 100%; height: auto; display: block; }
-.flujo .t1 { font: 800 19px "Bricolage Grotesque", sans-serif; fill: var(--tinta); }
+.flujo .t1 { font: 800 18px "Bricolage Grotesque", sans-serif; fill: var(--tinta); }
 .flujo .t2 { font: 500 14px "Source Sans 3", sans-serif; fill: var(--tinta-2); }
+.flujo { max-width: 1040px; margin: 0 auto; }
 .flujo .t3 { font: 700 13px "Source Sans 3", sans-serif; fill: var(--tinta-2); letter-spacing: 0.06em; }
 .flujo .caja { fill: var(--fondo); stroke: var(--linea); stroke-width: 1.5; }
 .flujo .caja.centro { fill: url(#gradCentro); stroke: none; }
@@ -237,7 +242,7 @@ section { padding: 96px 0; }
 @media (max-width: 860px) { .tres { grid-template-columns: 1fr; } }
 .preguntas { max-width: 820px; display: grid; gap: 10px; }
 .preguntas details { background: var(--papel); border: 1px solid var(--linea); border-radius: 14px; padding: 4px 20px; }
-.preguntas summary { cursor: pointer; padding: 14px 0; font-weight: 700; font-size: 17px; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+.preguntas summary { cursor: pointer; padding: 13px 0; font-weight: 700; font-size: 16px; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
 .preguntas summary::-webkit-details-marker { display: none; }
 .preguntas summary::after { content: "+"; font: 600 22px/1 "Source Sans 3", sans-serif; color: var(--tinta-3); transition: transform 0.2s; }
 .preguntas details[open] summary::after { transform: rotate(45deg); }
@@ -249,7 +254,7 @@ section { padding: 96px 0; }
   radial-gradient(600px 300px at 0% 100%, rgba(18, 179, 147, 0.4), transparent 60%),
   linear-gradient(160deg, #1b1e6e, #3d23a8); }
 .descarga h2 { color: #fff; }
-.descarga p { color: rgba(255, 255, 255, 0.82); margin: 14px auto 0; max-width: 620px; font-size: 18px; }
+.descarga p { color: rgba(255, 255, 255, 0.82); margin: 12px auto 0; max-width: 620px; font-size: 17px; }
 .descarga .acciones { justify-content: center; }
 .descarga .pasos-instalar { margin: 26px auto 0; max-width: 760px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; text-align: left; }
 .descarga .pasos-instalar div { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 14px; padding: 16px; font-size: 15px; color: rgba(255, 255, 255, 0.85); }
@@ -288,24 +293,23 @@ dialog.lupa button { position: fixed; top: 14px; right: 18px; width: 44px; heigh
 <section class="portada" style="padding: 0">
   <div class="envoltura">
     <div>
-      <span class="etiqueta"><i></i> Prueba gratis · Windows y Android</span>
+      <span class="etiqueta"><i></i> Gratis · Windows y Android</span>
       <h1>Todas tus tarjetas, <em>en un solo lugar.</em></h1>
       <p class="bajada">Cierres, vencimientos, cuotas y lo que hay que pagar este mes, de todos tus bancos y con la misma estructura. Cargás a mano o importás el resumen, y Mis Resúmenes los concilia.</p>
       <div class="acciones">
         <a class="boton primario" href="https://github.com/alejofolgueira-beep/mis-resumenes/releases/latest/download/Mis-Resumenes-Windows.exe">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5 10.5 4.5v7H3zM11.5 4.4 21 3v8.5h-9.5zM3 12.5h7.5v7L3 18.5zM11.5 12.5H21V21l-9.5-1.4z"/></svg>
-          Descargar para Windows
+          Descarga gratis para Windows
         </a>
         <a class="boton claro" href="https://github.com/alejofolgueira-beep/mis-resumenes/releases/latest/download/Mis-Resumenes-Android.apk">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 9.5 19.4 6.4a.5.5 0 0 0-.9-.5l-1.8 3.2A10.6 10.6 0 0 0 12 8.2c-1.7 0-3.3.3-4.7.9L5.5 5.9a.5.5 0 1 0-.9.5l1.8 3.1A8.9 8.9 0 0 0 2 16.5h20a8.9 8.9 0 0 0-4.4-7zM7.5 13.8a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm9 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg>
           Android
         </a>
       </div>
-      <p class="nota">Gratis mientras dure la prueba. Tus datos quedan en tu compu y en tus celulares.</p>
     </div>
     <div class="escena">
-      <div class="ventana"><div class="puntos"><i></i><i></i><i></i></div><img src="img/t-cuadro.webp" alt="Pantalla Tarjetas: todas las tarjetas por mes, con cierre, vencimiento, total, pagado y saldo" width="1600" height="588"></div>
-      <div class="telefono"><img src="img/cel-tarjetas.webp" alt="Tarjetas en el celular" width="780" height="1688"></div>
+      <div class="ventana" data-lupa="img/claro-items.webp" style="cursor: zoom-in"><div class="puntos"><i></i><i></i><i></i></div><img src="img/claro-items.webp" alt="El detalle de un resumen de tarjeta en la compu: cuotas y consumos con su categoría" width="1800" height="1163"></div>
+      <div class="telefono" data-lupa="img/claro-cel-cuentas.webp" style="cursor: zoom-in"><img src="img/claro-cel-cuentas.webp" alt="Cuentas en el celular, con los logos de los bancos" width="780" height="1688"></div>
     </div>
   </div>
 </section>
@@ -544,7 +548,7 @@ dialog.lupa button { position: fixed; top: 14px; right: 18px; width: 44px; heigh
   <div class="envoltura">
     <div class="cabeza aparece"><span class="antes">Preguntas</span><h2>Lo que nos preguntan.</h2></div>
     <div class="preguntas aparece">
-      <details><summary>¿Es gratis?</summary><p>Sí: estamos en período de prueba y la podés usar completa, sin límites.</p></details>
+      <details><summary>¿Es gratis?</summary><p>Sí, es gratuita y la podés usar completa, sin límites.</p></details>
       <details><summary>¿Necesito internet?</summary><p>No para usarla. Solo para sincronizar el celular con la compu y para bajar las actualizaciones, que se instalan solas.</p></details>
       <details><summary>¿Qué resúmenes puedo importar?</summary><p>Los PDF de los resúmenes de tarjeta, y los extractos de los bancos. Si alguno no se lee solo, se carga igual a mano o por el chat.</p></details>
       <details><summary>¿Mis datos van a algún servidor?</summary><p>No. La libreta queda en tus aparatos. Para pasar del celular a la compu, los cambios viajan cifrados por un buzón que no los puede leer.</p></details>
@@ -559,11 +563,11 @@ dialog.lupa button { position: fixed; top: 14px; right: 18px; width: 44px; heigh
   <div class="envoltura">
     <div class="descarga aparece">
       <h2>Probala con tus resúmenes.</h2>
-      <p>Bajala, seguí el asistente e importá tu primer resumen. Es gratis mientras dure la prueba.</p>
+      <p>Bajala, seguí el asistente e importá tu primer resumen.</p>
       <div class="acciones">
         <a class="boton primario" href="https://github.com/alejofolgueira-beep/mis-resumenes/releases/latest/download/Mis-Resumenes-Windows.exe">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5 10.5 4.5v7H3zM11.5 4.4 21 3v8.5h-9.5zM3 12.5h7.5v7L3 18.5zM11.5 12.5H21V21l-9.5-1.4z"/></svg>
-          Windows
+          Descarga gratis para Windows
         </a>
         <a class="boton claro" href="https://github.com/alejofolgueira-beep/mis-resumenes/releases/latest/download/Mis-Resumenes-Android.apk">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 9.5 19.4 6.4a.5.5 0 0 0-.9-.5l-1.8 3.2A10.6 10.6 0 0 0 12 8.2c-1.7 0-3.3.3-4.7.9L5.5 5.9a.5.5 0 1 0-.9.5l1.8 3.1A8.9 8.9 0 0 0 2 16.5h20a8.9 8.9 0 0 0-4.4-7zM7.5 13.8a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm9 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg>
