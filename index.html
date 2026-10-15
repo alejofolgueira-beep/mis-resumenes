@@ -123,7 +123,7 @@ p { margin: 0; }
 .escena { padding-right: 17%; }
 .escena .ventana { background: #fff; }
 .escena .ventana .puntos { background: #eceaf3; }
-.escena .telefono { position: absolute; width: 27%; right: 0; bottom: -12%; background: #fff; border-color: rgba(0, 0, 0, 0.12); }
+.escena .telefono { position: absolute; width: 27%; right: 0; bottom: -12%; }
 @media (max-width: 920px) {
   .portada .envoltura { grid-template-columns: 1fr; padding: 48px 0 72px; }
   .escena { margin: 8px 0 10% 0; }
@@ -173,15 +173,17 @@ section { padding: 72px 0; }
 .panel-vista .texto ul { grid-column: 2; grid-row: 1 / span 3; margin: 0; padding-left: 18px; color: var(--tinta-2); font-size: 14px; }
 .panel-vista .texto li { margin: 3px 0; }
 .panel-vista .texto .contador { grid-column: 1; margin-top: 4px; }
-.panel-vista .imagen { background: #151513; display: flex; align-items: flex-start; justify-content: center; max-height: 780px; overflow: hidden; cursor: zoom-in; }
-.panel-vista .imagen img { width: 100%; height: auto; object-fit: cover; object-position: top; }
-.panel-vista .imagen.cel { padding: 18px 0; background: linear-gradient(160deg, #1b1e6e, #3d23a8); }
-.panel-vista .imagen.cel img { width: auto; max-height: 600px; border-radius: 22px; border: 6px solid #0b0b10; }
+/* La captura se ve entera: se achica para que entre en la pantalla (tocándola se agranda). */
+.panel-vista .imagen { background: #151513; display: flex; align-items: center; justify-content: center; padding: 14px; cursor: zoom-in; }
+.panel-vista .imagen img { width: auto; max-width: 100%; height: auto; max-height: min(70vh, 660px); object-fit: contain; border-radius: 8px; }
+.panel-vista .imagen.cel { background: linear-gradient(160deg, #1b1e6e, #3d23a8); }
+.panel-vista .imagen.cel img { max-height: min(66vh, 580px); border-radius: 22px; border: 6px solid #0b0b10; }
 .contador { font-size: 12px; color: var(--tinta-3); }
 @media (max-width: 760px) {
   .panel-vista .texto { grid-template-columns: 1fr; padding: 16px; }
   .panel-vista .texto ul { grid-column: 1; grid-row: auto; }
-  .panel-vista .imagen { max-height: 520px; }
+  .panel-vista .imagen { padding: 8px; }
+  .panel-vista .imagen img { max-height: 60vh; }
 }
 
 /* ---------- cómo entran los datos ---------- */
@@ -309,7 +311,7 @@ dialog.lupa button { position: fixed; top: 14px; right: 18px; width: 44px; heigh
     </div>
     <div class="escena">
       <div class="ventana" data-lupa="img/claro-items.webp" style="cursor: zoom-in"><div class="puntos"><i></i><i></i><i></i></div><img src="img/claro-items.webp" alt="El detalle de un resumen de tarjeta en la compu: cuotas y consumos con su categoría" width="1800" height="1163"></div>
-      <div class="telefono" data-lupa="img/claro-cel-cuentas.webp" style="cursor: zoom-in"><img src="img/claro-cel-cuentas.webp" alt="Cuentas en el celular, con los logos de los bancos" width="780" height="1688"></div>
+      <div class="telefono" data-lupa="img/cel-bancos.webp" style="cursor: zoom-in"><img src="img/cel-bancos.webp" alt="Cuentas en el celular, con los bancos abiertos y sus logos" width="780" height="1688"></div>
     </div>
   </div>
 </section>
