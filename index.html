@@ -3,955 +3,645 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mis Resúmenes · Todas tus tarjetas en un solo lugar</title>
+<meta name="description" content="Cierres, vencimientos, cuotas y lo que hay que pagar este mes, de todas tus tarjetas, con la misma estructura. Cargás a mano o importás el resumen, y Mis Resúmenes concilia.">
 <link rel="icon" href="img/logo.png" type="image/png">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Mis Resúmenes · Todos tus resúmenes en un solo lugar">
-<meta property="og:description" content="Cargá los gastos desde un chat o importá el resumen de la tarjeta: Mis Resúmenes concilia, clasifica y te dice cuánta plata tenés de verdad.">
+<meta property="og:title" content="Mis Resúmenes · Todas tus tarjetas en un solo lugar">
+<meta property="og:description" content="Cargás a mano o importás el resumen de la tarjeta: Mis Resúmenes concilia, clasifica y te muestra todo con la misma estructura.">
 <meta property="og:image" content="https://alejofolgueira-beep.github.io/mis-resumenes/img/logo.png">
 <meta property="og:url" content="https://alejofolgueira-beep.github.io/mis-resumenes/">
 <meta name="twitter:card" content="summary">
-<title>Mis Resúmenes</title>
-<meta name="description" content="Consolidá e integrá todos tus resúmenes de bancos, tarjetas y billeteras en un solo lugar.">
+<meta name="theme-color" content="#1b1e6e">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:wght@400;500;600&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* Layout: una columna ancha (1180px) con filas que alternan texto y captura; el héroe pone la compu y el celular
-   juntos, con los resúmenes en papel cayendo sobre la pantalla. Colores del logo: azul y violeta de fondo, rosa y verde agua. */
 :root {
-  --fondo: #f5f5fb; --papel: #ffffff; --papel-2: #ebebf6; --tinta: #14152e; --tinta-2: #53556e; --tinta-3: #84869c; --linea: #e0e0ee;
-  --indigo: #4a2fc9; --indigo-suave: #ece8fd; --coral: #d81b60; --coral-hondo: #bc1453; --coral-texto: #c2185b; --coral-suave: #fde4ee; --cian: #0fb595;
-  --verde: #0e7a5a; --verde-suave: #e2f4ec; --rojo: #b3261e; --ambar: #a1600a; --ambar-suave: #fbefd9; --marca: #10236b; --marco: #10236b;
-  --fondo-marca: linear-gradient(135deg, #082c6a 0%, #24208a 55%, #45208f 100%);
-  --sombra: 0 1px 2px rgba(20, 21, 46, .06), 0 18px 40px -22px rgba(20, 21, 46, .4);
-  --sobre-coral: #ffffff; --sobre-marca: #ffffff; --sobre-marca-2: #cfd0f0;
-  --titulos: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
-  --texto: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
-  --mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Menlo, monospace;
-  --radio: 14px;
+  --fondo: #f5f5fb;
+  --fondo-2: #ecebf7;
+  --papel: #ffffff;
+  --tinta: #15152b;
+  --tinta-2: #55576f;
+  --tinta-3: #8a8ca3;
+  --linea: #e3e2ef;
+  --marca: #1b1e6e;
+  --violeta: #5b3df5;
+  --verde: #12b393;
+  --verde-texto: #0b8a71;
+  --rosa: #ff4f8b;
+  --sombra: 0 1px 2px rgba(21, 21, 43, 0.06), 0 12px 32px -12px rgba(21, 21, 43, 0.18);
+  --radio: 18px;
+  color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --fondo: #0b0d2a; --papel: #151838; --papel-2: #1f2350; --tinta: #eeeef8; --tinta-2: #b0b1c9; --tinta-3: #8486a5; --linea: #2b2f63;
-    --indigo: #a99bff; --indigo-suave: #251f5c; --coral: #ff5c9a; --coral-hondo: #ff7aae; --coral-texto: #ff7aae; --coral-suave: #3d1630; --cian: #2fe0bd;
-    --verde: #3fc79b; --verde-suave: #123a33; --rojo: #ff7b6b; --ambar: #e8a94d; --ambar-suave: #3a2c18; --marca: #15205e; --marco: #05061a;
-    --fondo-marca: linear-gradient(135deg, #0a1f52 0%, #1d1a6e 55%, #361a72 100%);
-    --sombra: 0 1px 2px rgba(0,0,0,.45), 0 18px 40px -22px rgba(0,0,0,.95);
-    --sobre-coral: #1a0b2e;
+    --fondo: #0d0e19;
+    --fondo-2: #141526;
+    --papel: #171829;
+    --tinta: #f1f1f9;
+    --tinta-2: #b2b3cc;
+    --tinta-3: #7f81a0;
+    --linea: #2a2c44;
+    --verde-texto: #3fd9b8;
+    --sombra: 0 1px 2px rgba(0, 0, 0, 0.4), 0 16px 40px -16px rgba(0, 0, 0, 0.7);
     color-scheme: dark;
   }
 }
-:root[data-theme="dark"] {
-    --fondo: #0b0d2a; --papel: #151838; --papel-2: #1f2350; --tinta: #eeeef8; --tinta-2: #b0b1c9; --tinta-3: #8486a5; --linea: #2b2f63;
-    --indigo: #a99bff; --indigo-suave: #251f5c; --coral: #ff5c9a; --coral-hondo: #ff7aae; --coral-texto: #ff7aae; --coral-suave: #3d1630; --cian: #2fe0bd;
-    --verde: #3fc79b; --verde-suave: #123a33; --rojo: #ff7b6b; --ambar: #e8a94d; --ambar-suave: #3a2c18; --marca: #15205e; --marco: #05061a;
-    --fondo-marca: linear-gradient(135deg, #0a1f52 0%, #1d1a6e 55%, #361a72 100%);
-    --sombra: 0 1px 2px rgba(0,0,0,.45), 0 18px 40px -22px rgba(0,0,0,.95);
-    --sobre-coral: #1a0b2e;
-    color-scheme: dark;
-}
-
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-body { margin: 0; background: var(--fondo); color: var(--tinta); font-family: var(--texto); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
-img { max-width: 100%; display: block; }
-a { color: var(--indigo); }
-h1, h2, h3 { font-family: var(--titulos); margin: 0; text-wrap: balance; letter-spacing: -.015em; line-height: 1.08; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--tinta);
+  font: 17px/1.55 "Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; }
+h1, h2, h3 { font-family: "Bricolage Grotesque", "Source Sans 3", sans-serif; letter-spacing: -0.02em; line-height: 1.1; margin: 0; }
+h2 { font-size: clamp(30px, 4.6vw, 46px); font-weight: 800; }
+h3 { font-size: 20px; font-weight: 700; }
 p { margin: 0; }
-:focus-visible { outline: 2px solid var(--indigo); outline-offset: 3px; border-radius: 6px; }
-.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
-.envoltura { max-width: 1180px; margin: 0 auto; padding-inline: 20px; }
-.etiqueta { font-size: 12.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--indigo); }
+.envoltura { width: min(1180px, 100% - 32px); margin: 0 auto; }
+.chico { font-size: 14px; color: var(--tinta-2); }
 
 /* ---------- barra ---------- */
-.barra { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--fondo) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--linea); }
-.barra .envoltura { display: flex; align-items: center; gap: 20px; padding-block: 12px; }
-.marca { display: flex; align-items: center; gap: 10px; font-family: var(--titulos); font-weight: 800; font-size: 21px; color: var(--tinta); text-decoration: none; margin-right: auto; }
-.marca img { width: 38px; height: 38px; }
-.menu { display: flex; gap: 22px; }
-.menu a { color: var(--tinta-2); text-decoration: none; font-weight: 500; font-size: 15.5px; }
-.menu a:hover { color: var(--tinta); }
-.boton { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border-radius: 999px; padding: 12px 22px; font: 600 16px var(--texto); text-decoration: none; border: 1px solid transparent; cursor: pointer; transition: transform .15s ease, background .15s ease; }
-.boton.primario { background: var(--coral); color: var(--sobre-coral); }
-.boton.primario:hover { background: var(--coral-hondo); transform: translateY(-1px); }
-.boton.secundario { background: transparent; color: var(--tinta); border-color: var(--linea); }
-.boton.secundario:hover { border-color: var(--tinta-3); }
-.boton.chico { padding: 8px 16px; font-size: 15px; }
-@media (max-width: 860px) { .menu { display: none; } }
-
-/* ---------- héroe ---------- */
-.heroe { padding-block: 64px 40px; overflow: hidden; }
-.heroe .envoltura { display: grid; grid-template-columns: minmax(0, 1fr); gap: 44px; }
-.heroe-texto { max-width: 820px; }
-.heroe h1 { font-size: clamp(40px, 6.4vw, 82px); font-weight: 800; letter-spacing: -.035em; line-height: .98; margin-block: 16px 22px; }
-.heroe h1 .linea-verde { color: var(--indigo); }
-.heroe h1 .resaltado { position: relative; white-space: nowrap; }
-.heroe h1 .resaltado::after { content: ""; position: absolute; left: -2%; right: -2%; bottom: .06em; height: .2em; background: var(--coral); opacity: .4; border-radius: 4px; z-index: -1; }
-.heroe .bajada { font-size: clamp(17px, 1.7vw, 19px); color: var(--tinta-2); max-width: 640px; }
-.acciones { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; align-items: center; }
-.nota-chica { font-size: 14px; color: var(--tinta-3); margin-top: 14px; }
-
-.escena { position: relative; padding-block: 10px 30px; }
-.compu { position: relative; width: min(100%, 980px); margin-inline: auto; }
-.compu .pantalla { background: var(--marco); border-radius: 18px 18px 6px 6px; padding: 14px 14px 18px; box-shadow: var(--sombra); }
-.compu .pantalla img { border-radius: 6px; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; background: var(--papel); }
-.compu .base { height: 16px; margin-inline: -4%; background: linear-gradient(var(--papel-2), var(--linea)); border-radius: 0 0 14px 14px; border: 1px solid var(--linea); border-top: 0; }
-.cel { position: relative; width: 236px; max-width: 100%; background: var(--marco); border-radius: 38px; padding: 10px; box-shadow: var(--sombra); }
-.cel img { border-radius: 29px; width: 100%; height: auto; aspect-ratio: 585 / 1266; object-fit: cover; object-position: top; background: var(--papel); }
-.cel::before { content: ""; position: absolute; top: 18px; left: 50%; width: 70px; height: 18px; margin-left: -35px; border-radius: 10px; background: var(--marco); z-index: 2; }
-.escena .cel { position: absolute; right: max(0px, calc(50% - 560px)); bottom: -10px; z-index: 3; }
-
-/* resúmenes en papel */
-.papeles { position: absolute; inset: 0; pointer-events: none; z-index: 4; }
-.papel { position: absolute; width: 230px; background: var(--papel); color: var(--tinta); border: 1px solid var(--linea); border-radius: 6px 6px 0 0; padding: 12px 14px 18px; font-family: var(--mono); font-size: 12px; line-height: 1.45; box-shadow: 0 10px 24px -14px rgba(0,0,0,.45);
-  -webkit-mask: linear-gradient(#000 0 0) top / 100% calc(100% - 6px) no-repeat, radial-gradient(circle 6px at 6px 100%, #000 98%, #0000) bottom / 12px 7px repeat-x;
-  mask: linear-gradient(#000 0 0) top / 100% calc(100% - 6px) no-repeat, radial-gradient(circle 6px at 6px 100%, #000 98%, #0000) bottom / 12px 7px repeat-x; }
-.papel b { display: block; font-family: var(--texto); font-weight: 600; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 6px; }
-.papel .fila { display: flex; justify-content: space-between; gap: 8px; color: var(--tinta-2); }
-.papel .total { margin-top: 6px; padding-top: 6px; border-top: 1px dashed var(--linea); color: var(--tinta); font-weight: 600; display: flex; justify-content: space-between; }
-.papel .franja { position: absolute; left: 0; top: 0; bottom: 0; width: 4px; }
-.p1 { left: max(0px, calc(50% - 600px)); top: 2%; transform: rotate(-7deg); }
-.p2 { left: max(10px, calc(50% - 560px)); top: 40%; transform: rotate(4deg); }
-.p3 { right: max(200px, calc(50% - 380px)); top: -4%; transform: rotate(6deg); }
-@media (prefers-reduced-motion: no-preference) {
-  .p1 { animation: caer1 1.1s cubic-bezier(.2,.8,.2,1) both .15s; }
-  .p2 { animation: caer2 1.1s cubic-bezier(.2,.8,.2,1) both .3s; }
-  .p3 { animation: caer3 1.1s cubic-bezier(.2,.8,.2,1) both .45s; }
-  @keyframes caer1 { from { transform: translate(-40px, -60px) rotate(-18deg); } to { transform: rotate(-7deg); } }
-  @keyframes caer2 { from { transform: translate(-60px, 40px) rotate(14deg); } to { transform: rotate(4deg); } }
-  @keyframes caer3 { from { transform: translate(40px, -70px) rotate(18deg); } to { transform: rotate(6deg); } }
+.barra {
+  position: sticky; top: 0; z-index: 20;
+  background: color-mix(in srgb, var(--fondo) 82%, transparent);
+  backdrop-filter: saturate(1.4) blur(14px);
+  -webkit-backdrop-filter: saturate(1.4) blur(14px);
+  border-bottom: 1px solid color-mix(in srgb, var(--linea) 70%, transparent);
 }
-@media (max-width: 980px) { .p3 { display: none; } }
-@media (max-width: 760px) {
-  .papeles { display: none; }
-  .escena .cel { position: relative; right: auto; bottom: auto; margin: -110px 12px 0 auto; width: 150px; border-radius: 26px; padding: 7px; }
-  .escena .cel img { border-radius: 20px; }
-  .escena .cel::before { width: 46px; height: 12px; margin-left: -23px; top: 13px; }
-  .compu .pantalla { padding: 8px 8px 10px; border-radius: 12px 12px 4px 4px; }
-}
+.barra .envoltura { display: flex; align-items: center; gap: 20px; height: 64px; }
+.marca { display: flex; align-items: center; gap: 10px; font: 800 19px "Bricolage Grotesque", sans-serif; text-decoration: none; letter-spacing: -0.02em; }
+.marca img { width: 34px; height: 34px; border-radius: 9px; }
+.barra nav { display: flex; gap: 22px; margin-left: auto; font-weight: 600; font-size: 15px; }
+.barra nav a { text-decoration: none; color: var(--tinta-2); }
+.barra nav a:hover { color: var(--tinta); }
+@media (max-width: 860px) { .barra nav { display: none; } .barra .boton { margin-left: auto; } }
 
-/* ---------- bancos ---------- */
-.franja-bancos { border-block: 1px solid var(--linea); background: var(--papel); }
-.franja-bancos .envoltura { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 26px; padding-block: 18px; }
-.franja-bancos p { font-size: 14.5px; color: var(--tinta-3); margin-right: 6px; }
-.franja-bancos ul { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 0; padding: 0; list-style: none; font-family: var(--titulos); font-weight: 600; font-size: 17px; color: var(--tinta-2); }
+.boton {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 12px 20px; border-radius: 999px; border: 0; cursor: pointer;
+  font: 700 16px "Source Sans 3", sans-serif; text-decoration: none; white-space: nowrap;
+  transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+}
+.boton:hover { transform: translateY(-1px); }
+.boton.primario { background: var(--verde); color: #fff; box-shadow: 0 8px 22px -8px rgba(18, 179, 147, 0.7); }
+.boton.primario:hover { background: #0fa384; }
+.boton.claro { background: rgba(255, 255, 255, 0.12); color: #fff; border: 1px solid rgba(255, 255, 255, 0.28); }
+.boton.claro:hover { background: rgba(255, 255, 255, 0.2); }
+.boton.borde { background: var(--papel); color: var(--tinta); border: 1px solid var(--linea); }
+.boton.chico { padding: 9px 16px; font-size: 15px; }
+.boton svg { width: 18px; height: 18px; }
+
+/* ---------- portada ---------- */
+.portada {
+  position: relative; overflow: hidden; color: #fff;
+  background:
+    radial-gradient(900px 460px at 85% -10%, rgba(255, 79, 139, 0.32), transparent 60%),
+    radial-gradient(700px 520px at -10% 110%, rgba(18, 179, 147, 0.35), transparent 60%),
+    linear-gradient(160deg, #1b1e6e 0%, #2b1f86 55%, #3d23a8 100%);
+}
+.portada .envoltura { display: grid; grid-template-columns: 1.02fr 1.18fr; gap: 40px; align-items: center; padding: 72px 0 84px; }
+.etiqueta { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.22); font-size: 14px; font-weight: 600; }
+.etiqueta i { width: 8px; height: 8px; border-radius: 50%; background: #3fe0bd; box-shadow: 0 0 0 4px rgba(63, 224, 189, 0.25); }
+.portada h1 { font-size: clamp(40px, 6.4vw, 70px); font-weight: 800; margin: 18px 0 18px; }
+.portada h1 em { font-style: normal; background: linear-gradient(90deg, #6ff0d4, #ffd1e3); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.portada .bajada { font-size: clamp(18px, 2.1vw, 21px); color: rgba(255, 255, 255, 0.84); max-width: 560px; }
+.acciones { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.portada .nota { margin-top: 16px; font-size: 14px; color: rgba(255, 255, 255, 0.7); }
+.escena { position: relative; }
+.ventana { border-radius: 14px; overflow: hidden; background: #151513; box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.65); border: 1px solid rgba(255, 255, 255, 0.14); }
+.ventana .puntos { display: flex; gap: 6px; padding: 10px 12px; background: #1f1f1c; }
+.ventana .puntos i { width: 10px; height: 10px; border-radius: 50%; background: #3a3a36; }
+.ventana .puntos i:first-child { background: #ff5f57; } .ventana .puntos i:nth-child(2) { background: #febc2e; } .ventana .puntos i:nth-child(3) { background: #28c840; }
+.telefono { border-radius: 30px; padding: 7px; background: #0b0b10; box-shadow: 0 30px 70px -20px rgba(0, 0, 0, 0.7); border: 1px solid rgba(255, 255, 255, 0.12); }
+.telefono img { border-radius: 24px; }
+.escena .telefono { position: absolute; width: 31%; right: -3%; bottom: -16%; }
+@media (max-width: 920px) {
+  .portada .envoltura { grid-template-columns: 1fr; padding: 48px 0 72px; }
+  .escena { margin: 8px 6% 10% 0; }
+}
 
 /* ---------- secciones ---------- */
-section.bloque { padding-block: 88px; }
-.cabeza { max-width: 720px; margin-bottom: 44px; }
-.cabeza h2 { font-size: clamp(32px, 4.2vw, 52px); font-weight: 800; margin-top: 12px; }
-.cabeza p { color: var(--tinta-2); font-size: 17px; margin-top: 14px; }
+section { padding: 96px 0; }
+.cabeza { max-width: 760px; margin-bottom: 40px; }
+.cabeza .antes { display: inline-block; font-weight: 700; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--violeta); margin-bottom: 12px; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .cabeza .antes { color: #a996ff; } }
+.cabeza p { margin-top: 14px; font-size: 19px; color: var(--tinta-2); }
+.alterna { background: var(--fondo-2); }
+@media (max-width: 700px) { section { padding: 68px 0; } }
 
-/* problema */
-.problemas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
-.problema { background: var(--papel); border: 1px solid var(--linea); border-radius: var(--radio); padding: 26px; display: flex; flex-direction: column; gap: 10px; }
-.problema .cifra { font-family: var(--mono); font-size: 14px; color: var(--coral-texto); }
-.problema h3 { font-size: 22px; font-weight: 600; }
-.problema p { color: var(--tinta-2); font-size: 15.5px; }
-@media (max-width: 860px) { .problemas { grid-template-columns: minmax(0, 1fr); } }
-
-/* filas de funciones */
-.funcion { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 56px; align-items: center; padding-block: 44px; border-top: 1px solid var(--linea); }
-.funcion:first-of-type { border-top: 0; }
-.funcion.invertida { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
-.funcion.invertida .funcion-texto { order: 2; }
-.funcion-texto { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
-.funcion-texto h3 { font-size: clamp(28px, 3vw, 38px); font-weight: 800; }
-.funcion-texto p { color: var(--tinta-2); font-size: 16px; }
-.puntos { list-style: none; padding: 0; margin: 4px 0 0; display: flex; flex-direction: column; gap: 8px; font-size: 15.5px; }
-.puntos li { padding-left: 26px; position: relative; }
-.puntos li::before { content: ""; position: absolute; left: 2px; top: .5em; width: 12px; height: 7px; border-left: 2.5px solid var(--coral); border-bottom: 2.5px solid var(--coral); transform: rotate(-45deg); }
-.captura { background: var(--papel); border: 1px solid var(--linea); border-radius: var(--radio); padding: 8px; box-shadow: var(--sombra); min-width: 0; }
-.captura img { border-radius: 8px; width: 100%; height: auto; }
-.captura figcaption { font-size: 13.5px; color: var(--tinta-3); padding: 10px 6px 4px; }
-@media (max-width: 860px) {
-  .funcion, .funcion.invertida { grid-template-columns: minmax(0, 1fr); gap: 26px; }
-  .funcion.invertida .funcion-texto { order: 0; }
+/* chips de funciones */
+.chips { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 36px; }
+.chip { display: flex; gap: 12px; align-items: flex-start; padding: 16px; border-radius: 14px; background: var(--papel); border: 1px solid var(--linea); }
+.chip .ic { flex: 0 0 38px; height: 38px; border-radius: 11px; display: grid; place-items: center; font-size: 19px; background: var(--fondo-2); }
+.chip b { display: block; font-size: 16px; }
+.chip span { font-size: 14px; color: var(--tinta-2); line-height: 1.4; }
+@media (max-width: 980px) { .chips { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) {
+  .chips { gap: 8px; }
+  .chip { flex-direction: column; gap: 8px; padding: 12px; }
+  .chip .ic { flex: 0 0 auto; width: 34px; height: 34px; font-size: 17px; }
+  .chip b { font-size: 15px; line-height: 1.25; }
+  .chip span { display: none; }
 }
 
+/* visor de vistas (tarjetas, gráficos, más) */
+.visor { background: var(--papel); border: 1px solid var(--linea); border-radius: var(--radio); box-shadow: var(--sombra); overflow: hidden; }
+.pestanas { display: flex; gap: 6px; padding: 10px; overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid var(--linea); background: color-mix(in srgb, var(--fondo-2) 60%, var(--papel)); }
+.pestanas::-webkit-scrollbar { display: none; }
+.pestanas button {
+  display: inline-flex; align-items: center; gap: 8px; flex: 0 0 auto;
+  padding: 9px 14px; border-radius: 11px; border: 1px solid transparent; background: transparent;
+  font: 600 15px "Source Sans 3", sans-serif; color: var(--tinta-2); cursor: pointer;
+}
+.pestanas button svg { width: 18px; height: 18px; }
+.pestanas button:hover { color: var(--tinta); background: var(--papel); }
+.pestanas button[aria-selected="true"] { color: var(--tinta); background: var(--papel); border-color: var(--linea); box-shadow: 0 2px 8px -4px rgba(21, 21, 43, 0.3); }
+.pestanas button[aria-selected="true"] svg { color: var(--verde); }
+.panel-vista { display: grid; grid-template-columns: 300px minmax(0, 1fr); }
+.panel-vista .texto { padding: 26px; border-right: 1px solid var(--linea); }
+.panel-vista .texto h3 { margin-bottom: 10px; }
+.panel-vista .texto p { color: var(--tinta-2); }
+.panel-vista .texto ul { margin: 14px 0 0; padding-left: 18px; color: var(--tinta-2); font-size: 15px; }
+.panel-vista .texto li { margin: 4px 0; }
+.panel-vista .imagen { background: #151513; display: flex; align-items: flex-start; justify-content: center; max-height: 640px; overflow: hidden; cursor: zoom-in; }
+.panel-vista .imagen img { width: 100%; height: auto; object-fit: cover; object-position: top; }
+.panel-vista .imagen.cel { padding: 18px 0; background: linear-gradient(160deg, #1b1e6e, #3d23a8); }
+.panel-vista .imagen.cel img { width: auto; max-height: 600px; border-radius: 22px; border: 6px solid #0b0b10; }
+.contador { margin-top: 16px; font-size: 13px; color: var(--tinta-3); }
+@media (max-width: 860px) {
+  .panel-vista { grid-template-columns: 1fr; }
+  .panel-vista .texto { border-right: 0; border-bottom: 1px solid var(--linea); padding: 20px; }
+  .panel-vista .imagen { max-height: 520px; }
+}
 
-/* ---------- maquetas: chat y conciliación ---------- */
-.maqueta { background: var(--papel-2); border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 9px; font-size: 14.5px; margin-top: auto; }
-.burbuja { max-width: 88%; padding: 8px 12px; border-radius: 14px; line-height: 1.35; }
-.burbuja.yo { align-self: flex-end; background: var(--indigo); color: var(--papel); border-bottom-right-radius: 4px; font-family: var(--mono); font-size: 13.5px; }
-.burbuja.app { align-self: flex-start; background: var(--papel); border: 1px solid var(--linea); border-bottom-left-radius: 4px; width: 92%; }
-.ficha { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 2px 10px; margin: 6px 0 8px; font-size: 13.5px; }
-.ficha dt { color: var(--tinta-3); }
-.ficha dd { margin: 0; font-weight: 600; }
-.mini-botones { display: flex; gap: 6px; flex-wrap: wrap; }
-.mini-botones span { font-size: 12.5px; font-weight: 600; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--linea); background: var(--papel); }
-.mini-botones span.si { background: var(--coral); border-color: var(--coral); color: var(--sobre-coral); }
-.renglon { display: flex; align-items: center; justify-content: space-between; gap: 10px; background: var(--papel); border-radius: 9px; padding: 8px 10px; min-width: 0; }
-.renglon .q { min-width: 0; overflow-wrap: anywhere; }
-.renglon .q small { display: block; color: var(--tinta-3); font-size: 12.5px; }
-.chip { flex: none; font-size: 12.5px; font-weight: 600; padding: 3px 9px; border-radius: 999px; background: var(--indigo-suave); color: var(--indigo); }
-.chip.ok { background: var(--verde-suave); color: var(--verde); }
-.chip.falta { background: var(--coral-suave); color: var(--coral-texto); }
-.chip.revisar { background: var(--ambar-suave); color: var(--ambar); }
-.aprende { font-size: 13.5px; color: var(--tinta-2); border-left: 3px solid var(--coral); padding-left: 10px; }
-.barra-conc { display: flex; height: 8px; border-radius: 999px; overflow: hidden; gap: 2px; }
-.barra-conc i { display: block; }
-.resumen-cab { display: flex; justify-content: space-between; gap: 10px; font-size: 13.5px; font-weight: 600; }
-.resumen-cab span:last-child { font-family: var(--mono); white-space: nowrap; }
-.conteo { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 12.5px; color: var(--tinta-2); }
-.conteo b { font-family: var(--mono); }
+/* ---------- cómo entran los datos ---------- */
+.flujo { background: var(--papel); border: 1px solid var(--linea); border-radius: var(--radio); box-shadow: var(--sombra); padding: 28px; }
+.flujo svg { width: 100%; height: auto; display: block; }
+.flujo .t1 { font: 800 19px "Bricolage Grotesque", sans-serif; fill: var(--tinta); }
+.flujo .t2 { font: 500 14px "Source Sans 3", sans-serif; fill: var(--tinta-2); }
+.flujo .t3 { font: 700 13px "Source Sans 3", sans-serif; fill: var(--tinta-2); letter-spacing: 0.06em; }
+.flujo .caja { fill: var(--fondo); stroke: var(--linea); stroke-width: 1.5; }
+.flujo .caja.centro { fill: url(#gradCentro); stroke: none; }
+.flujo .blanco { fill: #fff; }
+.flujo .blanco2 { fill: rgba(255, 255, 255, 0.82); }
+.flujo .flecha { fill: none; stroke: var(--tinta-3); stroke-width: 2.5; stroke-dasharray: 6 7; animation: correr 1.2s linear infinite; }
+@keyframes correr { to { stroke-dashoffset: -26; } }
+@media (prefers-reduced-motion: reduce) { .flujo .flecha { animation: none; } }
+.flujo .flujo-v { display: none; }
+@media (max-width: 760px) { .flujo .flujo-h { display: none; } .flujo .flujo-v { display: block; } .flujo { padding: 18px; } }
+.dos { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 28px; }
+.dos .tarjeta { background: var(--papel); border: 1px solid var(--linea); border-radius: var(--radio); padding: 24px; display: flex; flex-direction: column; gap: 14px; }
+.dos .tarjeta .marcador { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; color: var(--verde-texto); }
+.dos .tarjeta p { color: var(--tinta-2); }
+.ejemplos { display: flex; flex-wrap: wrap; gap: 8px; }
+.ejemplos code { font: 600 14px ui-monospace, "Cascadia Mono", Consolas, monospace; background: var(--fondo-2); border: 1px solid var(--linea); padding: 5px 10px; border-radius: 9px; }
+.dos .captura { margin-top: auto; border-radius: 12px; overflow: hidden; border: 1px solid var(--linea); cursor: zoom-in; background: #151513; }
+.dos .captura.cel { display: flex; justify-content: center; padding: 16px 0 0; background: linear-gradient(160deg, #1b1e6e, #3d23a8); max-height: 430px; }
+.dos .captura.cel img { width: 62%; border-radius: 18px 18px 0 0; border: 5px solid #0b0b10; border-bottom: 0; object-fit: cover; object-position: top; }
+@media (max-width: 860px) { .dos { grid-template-columns: 1fr; } }
 
+/* ---------- arrancar ---------- */
+.pasos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+.paso { display: flex; flex-direction: column; gap: 12px; }
+.paso .num { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--violeta); color: #fff; font: 800 16px "Bricolage Grotesque", sans-serif; }
+.paso p { color: var(--tinta-2); font-size: 15px; }
+.paso .telefono { margin-top: 4px; cursor: zoom-in; }
+.paso .telefono img { aspect-ratio: 390 / 600; object-fit: cover; object-position: top; }
+@media (max-width: 980px) {
+  .pasos { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 72%; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 10px; }
+  .paso { scroll-snap-align: start; }
+}
 
-/* ---------- dos formas de cargar ---------- */
-.dos-formas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
-.forma { background: var(--papel); border: 1px solid var(--linea); border-radius: var(--radio); padding: 24px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
-.forma .cuando { align-self: flex-start; font-size: 12.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--coral-texto); background: var(--coral-suave); padding: 3px 10px; border-radius: 999px; }
-.forma h3 { font-size: 24px; font-weight: 800; }
-.forma > p { color: var(--tinta-2); font-size: 15.5px; }
-.clasifica { margin-top: 18px; background: var(--papel); border: 1px solid var(--linea); border-radius: var(--radio); padding: 20px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 28px; }
-.clasifica .texto { flex: 1 1 280px; min-width: 0; }
-.clasifica h3 { font-size: 19px; font-weight: 700; }
-.clasifica p { color: var(--tinta-2); font-size: 15px; margin-top: 4px; }
-.clasifica .pares { display: flex; flex-wrap: wrap; gap: 8px; flex: 2 1 420px; }
-.par { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; background: var(--papel-2); border-radius: 999px; padding: 4px 6px 4px 12px; }
-.par b { font-weight: 600; }
-@media (max-width: 860px) { .dos-formas { grid-template-columns: minmax(0, 1fr); } }
+/* ---------- cuentas ---------- */
+.lado { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 48px; align-items: center; }
+.lado .lista { list-style: none; padding: 0; margin: 22px 0 0; display: grid; gap: 14px; }
+.lado .lista li { display: flex; gap: 12px; }
+.lado .lista li::before { content: ""; flex: 0 0 22px; height: 22px; margin-top: 2px; border-radius: 50%; background: var(--verde) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center / 13px no-repeat; }
+.lado .lista li span { color: var(--tinta-2); }
+.combo { position: relative; padding-bottom: 8%; }
+.combo .ventana { width: 88%; }
+.combo .telefono { position: absolute; width: 30%; right: 0; bottom: 0; }
+@media (max-width: 900px) { .lado { grid-template-columns: 1fr; gap: 32px; } }
 
-/* ---------- tarjetas a fondo ---------- */
-.seccion-tarjetas { background: var(--papel); border-block: 1px solid var(--linea); }
-.actualiza { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: var(--linea); border: 1px solid var(--linea); border-radius: var(--radio); overflow: hidden; margin-bottom: 30px; }
-.actualiza div { background: var(--fondo); padding: 18px 20px; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
-.actualiza span { font-size: 12.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--tinta-3); font-weight: 600; }
-.actualiza b { font-family: var(--mono); font-size: 21px; font-weight: 600; letter-spacing: -.01em; }
-.actualiza small { color: var(--tinta-2); font-size: 14px; }
-@media (max-width: 960px) { .actualiza { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 520px) { .actualiza { grid-template-columns: minmax(0, 1fr); } }
-.ventana { margin: 0; border: 1px solid var(--linea); border-radius: 12px; overflow: hidden; box-shadow: var(--sombra); background: #f6f5f0; }
-.ventana-barra { display: flex; align-items: center; gap: 7px; padding: 10px 14px; background: var(--marca); }
-.ventana-barra i { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,.28); display: block; }
-.ventana-barra span { margin-left: 10px; color: var(--sobre-marca-2); font-size: 13.5px; font-family: var(--mono); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.ventana img { width: 100%; height: auto; }
-.tarjetas-texto { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 20px; align-items: start; margin-top: 18px; }
-.tarjetas-texto p { color: var(--tinta-2); font-size: 15.5px; max-width: 760px; }
-.tarjetas-texto .pasar { display: flex; gap: 8px; }
-.tarjetas-texto .pasar button { border: 1px solid var(--linea); background: var(--papel); color: var(--tinta); width: 40px; height: 40px; border-radius: 50%; font: 600 18px var(--texto); cursor: pointer; }
-.tarjetas-texto .pasar button:hover { border-color: var(--tinta-3); }
-
-/* ---------- gráfico propio ---------- */
-.panel-cuotas { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 22px; }
-.tarjeta { background: var(--papel); border: 1px solid var(--linea); border-radius: var(--radio); padding: 24px; min-width: 0; }
-.tarjeta h3 { font-size: 22px; font-weight: 600; }
-.tarjeta .sub { color: var(--tinta-3); font-size: 14.5px; margin-top: 4px; }
-.leyenda { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 14.5px; color: var(--tinta-2); margin: 16px 0 6px; }
-.leyenda span { display: inline-flex; align-items: center; gap: 7px; }
-.leyenda i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
-.grafico { position: relative; }
-.grafico svg { width: 100%; height: auto; display: block; overflow: visible; }
-.grafico .eje { fill: var(--tinta-3); font: 12px var(--mono); }
-.grafico .valor { fill: var(--tinta); font: 600 12.5px var(--mono); }
-.grafico .grilla { stroke: var(--linea); stroke-width: 1; }
-.grafico .columna { cursor: default; }
-.grafico .columna:hover .golpe, .grafico .columna.activa .golpe { fill: var(--papel-2); }
-.globo { position: absolute; pointer-events: none; background: var(--tinta); color: var(--fondo); border-radius: 10px; padding: 10px 12px; font-size: 13.5px; min-width: 190px; box-shadow: var(--sombra); transform: translate(-50%, calc(-100% - 10px)); }
-.globo .f { display: flex; justify-content: space-between; gap: 14px; }
-.globo .t { border-top: 1px solid color-mix(in srgb, var(--fondo) 30%, transparent); margin-top: 5px; padding-top: 5px; font-weight: 600; }
-.cifras { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1px; background: var(--linea); border: 1px solid var(--linea); border-radius: var(--radio); overflow: hidden; align-content: start; }
-.cifras div { background: var(--papel); padding: 18px 20px; display: flex; flex-direction: column; gap: 2px; }
-.cifras span { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--tinta-3); font-weight: 600; }
-.cifras b { font-family: var(--mono); font-size: 26px; font-weight: 600; letter-spacing: -.02em; }
-.cifras small { color: var(--tinta-2); font-size: 14px; }
-.cifras .bien { color: var(--verde); }
-.cifras .deuda { color: var(--rojo); }
-.ejemplo { display: inline-block; font-size: 12.5px; color: var(--tinta-3); border: 1px dashed var(--tinta-3); border-radius: 999px; padding: 1px 9px; margin-left: 6px; vertical-align: 2px; font-weight: 500; letter-spacing: 0; text-transform: none; }
-@media (max-width: 860px) { .panel-cuotas { grid-template-columns: minmax(0, 1fr); } }
-
-/* ---------- celular ---------- */
-.fondo-marca { background: var(--fondo-marca); color: var(--sobre-marca); }
-.fondo-marca .cabeza h2 { color: var(--sobre-marca); }
-.fondo-marca .cabeza p { color: var(--sobre-marca-2); }
-.fondo-marca .etiqueta { color: var(--coral); }
-.fondo-marca .cel { box-shadow: 0 30px 60px -30px rgba(0,0,0,.8); background: #05031a; }
-.celulares { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; }
-.celulares .cel { width: 250px; }
-.celulares figure { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 14px; }
-.celulares figcaption { font-weight: 600; font-family: var(--titulos); font-size: 17px; color: var(--sobre-marca); }
-.celulares figure:nth-child(2) { transform: translateY(-26px); }
-@media (max-width: 860px) { .celulares figure:nth-child(2) { transform: none; } .celulares .cel { width: 220px; } }
-
-/* ---------- recorrido ---------- */
-.solapas { display: flex; flex-wrap: wrap; gap: 6px; background: var(--papel-2); padding: 5px; border-radius: 999px; width: fit-content; max-width: 100%; margin-bottom: 22px; }
-.solapas button { border: 0; background: transparent; color: var(--tinta-2); font: 600 15.5px var(--texto); padding: 9px 18px; border-radius: 999px; cursor: pointer; }
-.solapas button[aria-selected="true"] { background: var(--papel); color: var(--indigo); box-shadow: 0 1px 3px rgba(0,0,0,.12); }
-.recorrido .compu { width: 100%; }
-.recorrido-texto { color: var(--tinta-2); font-size: 15.5px; margin-top: 20px; max-width: 720px; min-height: 3em; }
-
-/* ---------- pasos ---------- */
-.pasos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; counter-reset: paso; }
-.paso { background: var(--papel); border: 1px solid var(--linea); border-radius: var(--radio); padding: 26px; display: flex; flex-direction: column; gap: 10px; }
-.paso .n { font-family: var(--mono); font-weight: 600; color: var(--indigo); background: var(--indigo-suave); width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; }
-.paso h3 { font-size: 22px; font-weight: 600; }
-.paso p { color: var(--tinta-2); font-size: 15.5px; }
-@media (max-width: 860px) { .pasos { grid-template-columns: minmax(0, 1fr); } }
-
-/* ---------- datos ---------- */
-.seguridad { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 48px; align-items: start; }
-.garantias { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-.garantia { border-top: 2px solid var(--coral); padding-top: 14px; }
-.garantia h3 { font-size: 19px; font-weight: 600; margin-bottom: 6px; }
-.garantia p { color: var(--tinta-2); font-size: 15px; }
-@media (max-width: 860px) { .seguridad, .garantias { grid-template-columns: minmax(0, 1fr); } }
-
-/* ---------- precio ---------- */
-.planes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 880px; gap: 18px; align-items: stretch; }
-.plan { background: var(--papel); border: 1px solid var(--linea); border-radius: var(--radio); padding: 28px; display: flex; flex-direction: column; gap: 12px; }
-.plan.destacado { border: 2px solid var(--indigo); position: relative; }
-.plan.destacado::before { content: "Sin tarjeta ni registro"; position: absolute; top: -13px; left: 24px; background: var(--indigo); color: var(--papel); font-size: 13px; font-weight: 600; padding: 3px 12px; border-radius: 999px; }
-.plan h3 { font-size: 22px; font-weight: 600; }
-.plan .precio { font-family: var(--titulos); font-size: 34px; font-weight: 800; letter-spacing: -.03em; }
-.plan .precio small { font-family: var(--texto); font-size: 16px; color: var(--tinta-3); font-weight: 500; letter-spacing: 0; }
-.plan p { color: var(--tinta-2); font-size: 15.5px; }
-.plan .puntos { flex: 1; }
-.plan .boton { margin-top: 8px; }
-@media (max-width: 960px) { .planes { grid-template-columns: minmax(0, 1fr); } }
-
-/* ---------- preguntas ---------- */
-.preguntas { max-width: 860px; }
-.preguntas details { border-top: 1px solid var(--linea); padding-block: 18px; }
-.preguntas details:last-child { border-bottom: 1px solid var(--linea); }
-.preguntas summary { cursor: pointer; font-family: var(--titulos); font-weight: 600; font-size: 19px; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+/* ---------- privacidad y preguntas ---------- */
+.tres { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.tres .tarjeta { background: var(--papel); border: 1px solid var(--linea); border-radius: var(--radio); padding: 24px; }
+.tres .tarjeta .ic { font-size: 26px; margin-bottom: 10px; }
+.tres .tarjeta p { color: var(--tinta-2); margin-top: 8px; }
+@media (max-width: 860px) { .tres { grid-template-columns: 1fr; } }
+.preguntas { max-width: 820px; display: grid; gap: 10px; }
+.preguntas details { background: var(--papel); border: 1px solid var(--linea); border-radius: 14px; padding: 4px 20px; }
+.preguntas summary { cursor: pointer; padding: 14px 0; font-weight: 700; font-size: 17px; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
 .preguntas summary::-webkit-details-marker { display: none; }
-.preguntas summary::after { content: "+"; font-family: var(--mono); color: var(--coral-texto); font-size: 22px; line-height: 1; }
-.preguntas details[open] summary::after { content: "−"; }
-.preguntas details p { color: var(--tinta-2); margin-top: 10px; max-width: 70ch; font-size: 15.5px; }
+.preguntas summary::after { content: "+"; font: 600 22px/1 "Source Sans 3", sans-serif; color: var(--tinta-3); transition: transform 0.2s; }
+.preguntas details[open] summary::after { transform: rotate(45deg); }
+.preguntas details p { padding: 0 0 16px; color: var(--tinta-2); }
 
-/* ---------- descargas ---------- */
-.descargas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; align-items: stretch; }
-.descarga { background: var(--papel); border: 1px solid var(--linea); border-radius: var(--radio); padding: 24px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
-.descarga-cab { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-.descarga h3 { font-size: 24px; font-weight: 800; }
-.descarga .chico { color: var(--tinta-3); font-size: 14px; }
-.descarga .boton { align-self: stretch; }
-.beta { font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--coral-texto); background: var(--coral-suave); padding: 3px 10px; border-radius: 999px; }
-.beta.gris { color: var(--tinta-3); background: var(--papel-2); }
-.pasos-instalar { margin: 4px 0 0; padding-left: 20px; display: grid; gap: 6px; color: var(--tinta-2); font-size: 14.5px; }
-.descarga.proximamente { background: var(--papel-2); }
-.aviso-beta { margin-top: 18px; color: var(--tinta-2); font-size: 15px; max-width: 760px; }
-@media (max-width: 960px) { .descargas { grid-template-columns: minmax(0, 1fr); } }
+/* ---------- descarga ---------- */
+.descarga { text-align: center; color: #fff; border-radius: 28px; padding: 64px 24px; background:
+  radial-gradient(600px 300px at 90% 0%, rgba(255, 79, 139, 0.35), transparent 60%),
+  radial-gradient(600px 300px at 0% 100%, rgba(18, 179, 147, 0.4), transparent 60%),
+  linear-gradient(160deg, #1b1e6e, #3d23a8); }
+.descarga h2 { color: #fff; }
+.descarga p { color: rgba(255, 255, 255, 0.82); margin: 14px auto 0; max-width: 620px; font-size: 18px; }
+.descarga .acciones { justify-content: center; }
+.descarga .pasos-instalar { margin: 26px auto 0; max-width: 760px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; text-align: left; }
+.descarga .pasos-instalar div { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 14px; padding: 16px; font-size: 15px; color: rgba(255, 255, 255, 0.85); }
+.descarga .pasos-instalar b { color: #fff; }
+@media (max-width: 700px) { .descarga .pasos-instalar { grid-template-columns: 1fr; } }
+footer { padding: 40px 0 56px; color: var(--tinta-3); font-size: 14px; }
+footer .envoltura { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
 
-/* ---------- cierre ---------- */
-.cierre { background: var(--fondo-marca); color: var(--sobre-marca); border-radius: 24px; padding: clamp(32px, 6vw, 64px); display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 32px; align-items: center; }
-.cierre h2 { font-size: clamp(30px, 4vw, 48px); font-weight: 800; }
-.cierre p { color: var(--sobre-marca-2); margin-top: 12px; font-size: 16.5px; }
-.contacto { background: color-mix(in srgb, var(--sobre-marca) 8%, transparent); border: 1px solid color-mix(in srgb, var(--sobre-marca) 22%, transparent); border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 12px; }
-.contacto span { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; opacity: .8; font-weight: 600; }
-.contacto .correo { font-family: var(--mono); font-size: 17px; user-select: all; word-break: break-all; }
-.contacto button { align-self: flex-start; background: var(--coral); color: var(--sobre-coral); border: 0; border-radius: 999px; padding: 10px 20px; font: 600 15.5px var(--texto); cursor: pointer; }
-@media (max-width: 860px) { .cierre { grid-template-columns: minmax(0, 1fr); } }
+/* ---------- lupa ---------- */
+dialog.lupa { border: 0; padding: 0; background: transparent; max-width: 96vw; max-height: 94vh; }
+dialog.lupa::backdrop { background: rgba(8, 8, 16, 0.86); }
+dialog.lupa img { max-width: 96vw; max-height: 94vh; border-radius: 12px; }
+dialog.lupa button { position: fixed; top: 14px; right: 18px; width: 44px; height: 44px; border-radius: 50%; border: 0; background: rgba(255, 255, 255, 0.16); color: #fff; font-size: 24px; cursor: pointer; }
 
-footer { padding-block: 40px 56px; color: var(--tinta-3); font-size: 14.5px; }
-footer .envoltura { display: flex; flex-wrap: wrap; gap: 10px 28px; justify-content: space-between; }
+.aparece { opacity: 0; transform: translateY(18px); transition: opacity 0.6s, transform 0.6s; }
+.aparece.visto { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .aparece { opacity: 1; transform: none; transition: none; } }
 </style>
 </head>
 <body>
+
 <header class="barra">
   <div class="envoltura">
-    <a class="marca" href="#inicio"><img src="img/logo.webp" width="38" height="38" alt="">Mis Resúmenes</a>
-    <nav class="menu" aria-label="Secciones">
-      <a href="#cargar">Cargar</a>
+    <a class="marca" href="#"><img src="img/logo.png" alt="">Mis Resúmenes</a>
+    <nav>
       <a href="#tarjetas">Tarjetas</a>
-      <a href="#funciones">Funciones</a>
-      <a href="#celular">Celular</a>
-      <a href="#tus-datos">Tus datos</a>
-      <a href="#precio">Precio</a>
+      <a href="#como">Cómo funciona</a>
+      <a href="#arrancar">Arrancar</a>
+      <a href="#graficos">Gráficos</a>
       <a href="#preguntas">Preguntas</a>
-      <a href="#descargar">Descargar</a>
     </nav>
-    <a class="boton primario chico" href="#descargar">Descargar</a>
+    <a class="boton primario chico" href="#descargar">Descargar gratis</a>
   </div>
 </header>
 
-<main id="inicio">
-  <section class="heroe">
-    <div class="envoltura">
-      <div class="heroe-texto">
-        <span class="etiqueta">Finanzas de la familia, sin planillas</span>
-        <h1>Consolidá. Integrá. <span class="linea-verde">Todos tus <span class="resaltado">resúmenes</span> en un solo lugar.</span></h1>
-        <p class="bajada">Cargás cada gasto desde un chat en el momento, o importás el resumen de la tarjeta y la app lo concilia con lo cargado: lo que no estaba, te lo propone para cargar. Cierres, vencimientos y cuotas se actualizan solos.</p>
-        <div class="acciones">
-          <a class="boton primario" href="#descargar">Descargar gratis</a>
-          <a class="boton secundario" href="#tarjetas">Ver las tarjetas por dentro</a>
-        </div>
-        <p class="nota-chica">Para Windows y Android · Versión de prueba (beta), gratis · Mac y iPhone, próximamente</p>
+<section class="portada" style="padding: 0">
+  <div class="envoltura">
+    <div>
+      <span class="etiqueta"><i></i> Prueba gratis · Windows y Android</span>
+      <h1>Todas tus tarjetas, <em>en un solo lugar.</em></h1>
+      <p class="bajada">Cierres, vencimientos, cuotas y lo que hay que pagar este mes, de todos tus bancos y con la misma estructura. Cargás a mano o importás el resumen, y Mis Resúmenes los concilia.</p>
+      <div class="acciones">
+        <a class="boton primario" href="https://github.com/alejofolgueira-beep/mis-resumenes/releases/latest/download/Mis-Resumenes-Windows.exe">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5 10.5 4.5v7H3zM11.5 4.4 21 3v8.5h-9.5zM3 12.5h7.5v7L3 18.5zM11.5 12.5H21V21l-9.5-1.4z"/></svg>
+          Descargar para Windows
+        </a>
+        <a class="boton claro" href="https://github.com/alejofolgueira-beep/mis-resumenes/releases/latest/download/Mis-Resumenes-Android.apk">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 9.5 19.4 6.4a.5.5 0 0 0-.9-.5l-1.8 3.2A10.6 10.6 0 0 0 12 8.2c-1.7 0-3.3.3-4.7.9L5.5 5.9a.5.5 0 1 0-.9.5l1.8 3.1A8.9 8.9 0 0 0 2 16.5h20a8.9 8.9 0 0 0-4.4-7zM7.5 13.8a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm9 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg>
+          Android
+        </a>
       </div>
-
-      <div class="escena" aria-label="La app en la compu y en el celular">
-        <div class="compu">
-          <div class="pantalla"><img src="img/pc-cuentas.webp" width="1440" height="900" alt="Pantalla Cuentas: efectivo, bancos en pesos y dólares, tarjetas, agenda de pagos y el saldo disponible del mes"></div>
-          <div class="base"></div>
-        </div>
-        <div class="cel"><img src="img/cel-cuentas.webp" width="585" height="1266" alt="La pantalla Cuentas en el celular"></div>
-        <div class="papeles" aria-hidden="true">
-          <div class="papel p1"><i class="franja" style="background: var(--coral)"></i><b>Resumen Visa</b>
-            <div class="fila"><span>Cierre</span><span>25/09</span></div>
-            <div class="fila"><span>Vence</span><span>07/10</span></div>
-            <div class="fila"><span>Notebook c.06/12</span><span>140.000,00</span></div>
-            <div class="total"><span>Total</span><span>$ 1.135.800,00</span></div></div>
-          <div class="papel p2"><i class="franja" style="background: var(--cian)"></i><b>Extracto · Caja de ahorro</b>
-            <div class="fila"><span>03/10 Sueldo</span><span>+2.900.000</span></div>
-            <div class="fila"><span>08/10 Colegio</span><span>−546.700</span></div>
-            <div class="total"><span>Saldo</span><span>$ 3.727.400</span></div></div>
-          <div class="papel p3"><i class="franja" style="background: var(--indigo)"></i><b>Préstamo UVA</b>
-            <div class="fila"><span>Cuota</span><span>19 de 60</span></div>
-            <div class="fila"><span>UVA hoy</span><span>2.150,53</span></div>
-            <div class="total"><span>Vence 15/10</span><span>$ 296.859</span></div></div>
-        </div>
-      </div>
+      <p class="nota">Gratis mientras dure la prueba. Tus datos quedan en tu compu y en tus celulares.</p>
     </div>
-  </section>
-
-  <div class="franja-bancos">
-    <div class="envoltura">
-      <p>Todo junto, en un solo lugar:</p>
-      <ul>
-        <li>Bancos</li><li>Tarjetas de crédito</li><li>Billeteras virtuales</li><li>Efectivo</li><li>Cuentas en dólares</li><li>Cuotas</li><li>Préstamos</li>
-      </ul>
+    <div class="escena">
+      <div class="ventana"><div class="puntos"><i></i><i></i><i></i></div><img src="img/t-cuadro.webp" alt="Pantalla Tarjetas: todas las tarjetas por mes, con cierre, vencimiento, total, pagado y saldo" width="1600" height="588"></div>
+      <div class="telefono"><img src="img/cel-tarjetas.webp" alt="Tarjetas en el celular" width="780" height="1688"></div>
     </div>
   </div>
+</section>
 
-  <section class="bloque">
-    <div class="envoltura">
-      <div class="cabeza">
-        <span class="etiqueta">¿Te suena?</span>
-        <h2>La plata está repartida en cinco lugares y ninguno te dice el total.</h2>
+<!-- ============ TARJETAS ============ -->
+<section id="tarjetas">
+  <div class="envoltura">
+    <div class="cabeza aparece">
+      <span class="antes">Lo primero: tus tarjetas</span>
+      <h2>Todos los resúmenes, con la misma estructura.</h2>
+      <p>Cada banco arma su resumen a su manera. Mis Resúmenes los ordena todos igual, así sabés de un vistazo cuánto debés, cuándo vence y en qué se fue la plata.</p>
+    </div>
+    <div class="chips aparece">
+      <div class="chip"><div class="ic">📅</div><div><b>Cierres y vencimientos</b><span>De cada tarjeta, en una sola tabla.</span></div></div>
+      <div class="chip"><div class="ic">💳</div><div><b>Lo que pagás este mes</b><span>Total, lo ya pagado y lo que falta.</span></div></div>
+      <div class="chip"><div class="ic">🧾</div><div><b>Cuotas pendientes</b><span>Mes por mes, hasta la última.</span></div></div>
+      <div class="chip"><div class="ic">🏷️</div><div><b>Gastos por categoría</b><span>Cada consumo, en su lugar.</span></div></div>
+      <div class="chip"><div class="ic">💵</div><div><b>Pesos y dólares</b><span>Cada resumen, en las dos monedas.</span></div></div>
+      <div class="chip"><div class="ic">📊</div><div><b>Varios resúmenes juntos</b><span>Un año entero o el rango que elijas.</span></div></div>
+      <div class="chip"><div class="ic">⚖️</div><div><b>Comparar meses</b><span>El histórico de todas las tarjetas.</span></div></div>
+      <div class="chip"><div class="ic">🔔</div><div><b>Agenda de pagos</b><span>Los vencimientos del mes y su estado.</span></div></div>
+    </div>
+
+    <div class="visor aparece" data-visor>
+      <div class="pestanas" role="tablist" aria-label="Vistas de Tarjetas">
+        <button role="tab" data-img="img/t-cuadro.webp" data-titulo="Todas las tarjetas, mes por mes" data-texto="Una fila por tarjeta y una columna por mes: cierre, vencimiento, total de cada resumen, lo pagado y el saldo. Con el logo de cada banco." data-puntos="Tocá un mes y se abre su resumen|Tocá la tarjeta y ves todos sus meses|Verde: pagado · marrón: conciliado, falta pagar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 10v10M15 10v10"/></svg>Por mes</button>
+        <button role="tab" data-img="img/t-resumen.webp" data-titulo="El resumen, ordenado" data-texto="Saldo anterior, cuotas, consumos del mes, impuestos, pagos y ajustes, siempre en el mismo orden y en pesos y dólares, sea del banco que sea." data-puntos="Total a pagar en $ y USD|Lo que ya pagaste y desde qué cuenta|Se marca pagado solo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg>Resumen</button>
+        <button role="tab" data-img="img/t-items.webp" data-titulo="Detalle por ítems" data-texto="Cada consumo con su fecha, beneficiario, categoría y número de cuota. La categoría se corrige ahí mismo." data-puntos="Cuotas y consumos separados|Subtotales en pesos y dólares|Tocás la categoría y la cambiás"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>Ítems</button>
+        <button role="tab" data-img="img/t-categoria.webp" data-titulo="En qué se fue el resumen" data-texto="El resumen agrupado por rubro y categoría, con el porcentaje de cada uno y la torta de en qué se va la plata." data-puntos="Abrís cada rubro en sus categorías|Ves qué parte está en cuotas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a9 9 0 1 0 9 9h-9z"/><path d="M15 3.5A9 9 0 0 1 20.5 9H15z"/></svg>Por categoría</button>
+        <button role="tab" data-img="img/t-anio.webp" data-titulo="Varios resúmenes juntos" data-texto="Todas las tarjetas, un año entero o el rango que elijas: cuánto se fue cada mes y el promedio. Es la estadística que ningún banco te da." data-puntos="Una tarjeta o todas|Año completo o desde–hasta|Tocás un mes y vas a su resumen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Año</button>
+        <button role="tab" data-img="img/t-anio-cat.webp" data-titulo="El año, por categoría" data-texto="Los mismos resúmenes del año, agrupados por rubro y categoría, con su torta. Ideal para ver en qué se va la plata de la tarjeta en serio." data-puntos="Cantidad de consumos y total de cada rubro|Lo que pesa menos va junto en «Varios»"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Año por categoría</button>
+        <button role="tab" data-img="img/t-futuras.webp" data-titulo="Cuotas a futuro y deuda total" data-texto="Lo que ya está comprometido en cuotas, tarjeta por tarjeta y mes por mes. La deuda real de cada tarjeta, no solo la del resumen." data-puntos="Deuda del mes, cuotas futuras y deuda total|Tocás una tarjeta y ves sus compras"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>Cuotas futuras</button>
+        <button role="tab" data-img="img/t-historico.webp" data-titulo="Histórico para comparar" data-texto="Todos los resúmenes de todas las tarjetas, desde el primero: comparás meses y ves cómo vienen los gastos." data-puntos="Los pagados, en verde|El total y el saldo de cada mes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 3"/></svg>Histórico</button>
+        <button role="tab" data-img="img/cel-tarjetas.webp" data-cel="1" data-titulo="En el celular, igual" data-texto="Las mismas tarjetas en el bolsillo: la deuda del mes, las cuotas futuras y cada resumen." data-puntos="Sincroniza solo con la compu|Funciona sin internet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg>Celular</button>
       </div>
-      <div class="problemas">
-        <article class="problema">
-          <span class="cifra">25/09 · 20/10 · 12/10</span>
-          <h3>Cada tarjeta cierra un día distinto</h3>
-          <p>Te enterás de cuánto tenés que pagar cuando llega el resumen, y para entonces ya lo gastaste.</p>
-        </article>
-        <article class="problema">
-          <span class="cifra">cuota 6 de 12</span>
-          <h3>Las cuotas te persiguen</h3>
-          <p>La notebook de abril, el viaje de julio, el lavarropas de agosto. Todo sigue cayendo en los resúmenes que vienen.</p>
-        </article>
-        <article class="problema">
-          <span class="cifra">$ 8.093.567 ≠ disponible</span>
-          <h3>El saldo del banco te engaña</h3>
-          <p>Ves plata en la cuenta, pero una parte ya es de la tarjeta, del colegio y de la cuota del préstamo.</p>
-        </article>
+      <div class="panel-vista">
+        <div class="texto"><h3></h3><p></p><ul></ul><div class="contador"></div></div>
+        <div class="imagen"><img alt="" width="1600" height="1000"></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
+<!-- ============ CÓMO ENTRAN LOS DATOS ============ -->
+<section id="como" class="alterna">
+  <div class="envoltura">
+    <div class="cabeza aparece">
+      <span class="antes">Cómo funciona</span>
+      <h2>Cargás a mano o importás el resumen. La app los concilia.</h2>
+      <p>Las dos formas se complementan: lo que cargás en el momento y lo que trae el banco se cruzan solos. Lo que coincide queda conciliado, y lo que falta te lo propone para cargar.</p>
+    </div>
 
-  <section class="bloque" id="cargar" style="padding-top: 0">
-    <div class="envoltura">
-      <div class="cabeza">
-        <span class="etiqueta">Dos formas de cargar</span>
-        <h2>Cargalo en el momento o dejá que lo traiga el resumen.</h2>
-        <p>Las dos se complementan: lo que anotás desde el chat, el resumen lo confirma; lo que te olvidaste, el resumen te lo propone.</p>
+    <div class="flujo aparece" role="img" aria-label="Diagrama: la carga a mano desde el chat y el resumen importado del banco entran a la conciliación, y de ahí sale todo ordenado por tarjeta, categoría y mes.">
+      <svg class="flujo-h" viewBox="0 0 1100 330" aria-hidden="true">
+        <defs>
+          <linearGradient id="gradCentro" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1b1e6e"/><stop offset="1" stop-color="#4a2bc0"/></linearGradient>
+          <marker id="punta" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 10 5 0 10z" fill="#8a8ca3"/></marker>
+        </defs>
+        <!-- a mano -->
+        <rect class="caja" x="10" y="20" width="300" height="120" rx="18"/>
+        <text x="34" y="54" class="t3">1 · A MANO</text>
+        <text x="34" y="86" class="t1">💬 Lo cargás vos</text>
+        <text x="34" y="112" class="t2">En el chat: «super 25000 pesos visa»</text>
+        <!-- importar -->
+        <rect class="caja" x="10" y="190" width="300" height="120" rx="18"/>
+        <text x="34" y="224" class="t3">2 · IMPORTAR</text>
+        <text x="34" y="256" class="t1">📄 Subís el resumen</text>
+        <text x="34" y="282" class="t2">El PDF del banco: lo lee solo</text>
+        <!-- flechas a conciliación -->
+        <path class="flecha" d="M314 80 C 380 80, 380 150, 438 160" marker-end="url(#punta)"/>
+        <path class="flecha" d="M314 250 C 380 250, 380 180, 438 172" marker-end="url(#punta)"/>
+        <!-- conciliación -->
+        <rect class="caja centro" x="444" y="70" width="270" height="190" rx="22"/>
+        <text x="470" y="108" class="t3 blanco2" style="fill: rgba(255,255,255,.75)">3 · CONCILIACIÓN</text>
+        <text x="470" y="142" class="t1 blanco" style="fill:#fff">⚖️ Se cruzan solos</text>
+        <text x="470" y="176" class="t2" style="fill: rgba(255,255,255,.85)">✓ Coincide: conciliado</text>
+        <text x="470" y="202" class="t2" style="fill: rgba(255,255,255,.85)">＋ Falta: te lo propone</text>
+        <text x="470" y="228" class="t2" style="fill: rgba(255,255,255,.85)">? Sobra: te avisa</text>
+        <!-- flecha a resultado -->
+        <path class="flecha" d="M718 165 L 778 165" marker-end="url(#punta)"/>
+        <!-- resultado -->
+        <rect class="caja" x="784" y="50" width="306" height="230" rx="18"/>
+        <text x="808" y="86" class="t3">4 · TODO ORDENADO</text>
+        <text x="808" y="120" class="t1">✨ Listo para mirar</text>
+        <text x="808" y="154" class="t2">• Cada tarjeta, con su resumen</text>
+        <text x="808" y="182" class="t2">• Cada gasto, en su categoría</text>
+        <text x="808" y="210" class="t2">• Cuotas, vencimientos y saldos</text>
+        <text x="808" y="238" class="t2">• Gráficos y comparaciones</text>
+      </svg>
+      <svg class="flujo-v" viewBox="0 0 360 700" aria-hidden="true">
+        <defs>
+          <linearGradient id="gradCentroV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1b1e6e"/><stop offset="1" stop-color="#4a2bc0"/></linearGradient>
+          <marker id="puntaV" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 10 5 0 10z" fill="#8a8ca3"/></marker>
+        </defs>
+        <rect class="caja" x="4" y="4" width="170" height="130" rx="16"/>
+        <text x="18" y="32" class="t3">1 · A MANO</text>
+        <text x="18" y="64" class="t1">💬 Chat</text>
+        <text x="18" y="92" class="t2">Lo cargás</text>
+        <text x="18" y="112" class="t2">en el momento</text>
+        <rect class="caja" x="186" y="4" width="170" height="130" rx="16"/>
+        <text x="200" y="32" class="t3">2 · IMPORTAR</text>
+        <text x="200" y="64" class="t1">📄 Resumen</text>
+        <text x="200" y="92" class="t2">El PDF del</text>
+        <text x="200" y="112" class="t2">banco, leído solo</text>
+        <path class="flecha" d="M89 138 C 89 180, 170 170, 176 196" marker-end="url(#puntaV)"/>
+        <path class="flecha" d="M271 138 C 271 180, 190 170, 184 196" marker-end="url(#puntaV)"/>
+        <rect x="20" y="202" width="320" height="200" rx="20" fill="url(#gradCentroV)"/>
+        <text x="44" y="238" class="t3" style="fill: rgba(255,255,255,.75)">3 · CONCILIACIÓN</text>
+        <text x="44" y="272" class="t1" style="fill:#fff">⚖️ Se cruzan solos</text>
+        <text x="44" y="306" class="t2" style="fill: rgba(255,255,255,.85)">✓ Coincide: conciliado</text>
+        <text x="44" y="334" class="t2" style="fill: rgba(255,255,255,.85)">＋ Falta: te lo propone</text>
+        <text x="44" y="362" class="t2" style="fill: rgba(255,255,255,.85)">? Sobra: te avisa</text>
+        <path class="flecha" d="M180 406 L 180 460" marker-end="url(#puntaV)"/>
+        <rect class="caja" x="20" y="466" width="320" height="228" rx="18"/>
+        <text x="44" y="500" class="t3">4 · TODO ORDENADO</text>
+        <text x="44" y="534" class="t1">✨ Listo para mirar</text>
+        <text x="44" y="568" class="t2">• Cada tarjeta, con su resumen</text>
+        <text x="44" y="596" class="t2">• Cada gasto, en su categoría</text>
+        <text x="44" y="624" class="t2">• Cuotas, vencimientos y saldos</text>
+        <text x="44" y="652" class="t2">• Gráficos y comparaciones</text>
+      </svg>
+    </div>
+
+    <div class="dos">
+      <div class="tarjeta aparece">
+        <span class="marcador">💬 Carga a mano, con el chat</span>
+        <h3>Escribís como hablás y la app arma la ficha.</h3>
+        <p>Entiende el importe, la tarjeta o la cuenta, la categoría, el comercio, las cuotas y quién lo gastó. Revisás y guardás.</p>
+        <div class="ejemplos"><code>coto 25000 pesos visa</code><code>nafta 45000 pesos master 3 cuotas</code><code>farmacia 8500 efectivo</code></div>
+        <div class="captura cel" data-lupa="img/cel-chat.webp"><img src="img/cel-chat.webp" alt="Chat de la app: «coto 25000 pesos visa de martín» y la ficha del gasto armada" loading="lazy" width="780" height="1688"></div>
       </div>
-      <div class="dos-formas">
-        <article class="forma">
-          <span class="cuando">Durante el mes</span>
-          <h3>Desde el chat</h3>
-          <p>Escribís el gasto como te sale. La app entiende el importe, la tarjeta y las cuotas, y te muestra la ficha para confirmar.</p>
-          <div class="maqueta" aria-label="Ejemplo de carga por chat">
-            <div class="burbuja yo">coto 25 lucas visa</div>
-            <div class="burbuja app">Entendí un gasto:
-              <dl class="ficha"><dt>Comercio</dt><dd>Coto</dd><dt>Importe</dt><dd class="num">$ 25.000</dd><dt>Tarjeta</dt><dd>Visa de Martín</dd><dt>Categoría</dt><dd>Supermercado</dd></dl>
-              <div class="mini-botones"><span class="si">Confirmar</span><span>Cambiar</span></div>
-            </div>
-            <div class="burbuja yo">zapatillas 90 lucas master 3 cuotas</div>
-          </div>
-        </article>
-        <article class="forma">
-          <span class="cuando">Cuando llega el resumen</span>
-          <h3>Importando el resumen</h3>
-          <p>Subís el PDF de la tarjeta. Lo que ya estaba cargado queda conciliado; lo que no, te lo propone como gasto nuevo, con su categoría, para cargarlo con un toque.</p>
-          <div class="maqueta" aria-label="Ejemplo de conciliación de un resumen">
-            <div class="resumen-cab"><span>Resumen Visa de Martín · vence 07/11</span><span>$ 777.900</span></div>
-            <div class="barra-conc" aria-hidden="true"><i style="flex: 5; background: var(--verde)"></i><i style="flex: 2; background: var(--coral)"></i><i style="flex: 1; background: var(--ambar)"></i></div>
-            <div class="conteo"><span><b>5</b> conciliados</span><span><b>2</b> nuevos para cargar</span><span><b>1</b> para revisar</span></div>
-            <div class="renglon"><span class="q">COTO 042<small>$ 214.700 · ya estaba cargado</small></span><span class="chip ok">Conciliado</span></div>
-            <div class="renglon"><span class="q">RAPPI ARGENTINA<small>$ 18.400 · te propone: Comidas afuera › Delivery</small></span><span class="chip falta">Cargar</span></div>
-            <div class="renglon"><span class="q">FARMACITY SUC 112<small>$ 12.300 · te propone: Salud › Farmacia</small></span><span class="chip falta">Cargar</span></div>
-            <div class="renglon"><span class="q">Fibertel (cargado a mano)<small>$ 43.500 · no está en este resumen</small></span><span class="chip revisar">Revisar</span></div>
-          </div>
-        </article>
-      </div>
-      <div class="clasifica">
-        <div class="texto">
-          <h3>En las dos, la categoría la pone la app</h3>
-          <p>Según el comercio. Si corregís una, aprende y la próxima vez la pone bien sola.</p>
-        </div>
-        <div class="pares" aria-label="Ejemplos de clasificación">
-          <span class="par"><b>Coto</b><span class="chip">Supermercado</span></span>
-          <span class="par"><b>YPF</b><span class="chip">Combustible</span></span>
-          <span class="par"><b>Rappi</b><span class="chip">Delivery</span></span>
-          <span class="par"><b>Farmacity</b><span class="chip">Farmacia</span></span>
-          <span class="par"><b>Colegio San Martín</b><span class="chip">Colegio</span></span>
-          <span class="par"><b>Netflix</b><span class="chip">Suscripciones</span></span>
-        </div>
+      <div class="tarjeta aparece">
+        <span class="marcador">📄 Importás el resumen y se concilia</span>
+        <h3>Subís el PDF y la app cruza todo.</h3>
+        <p>Lo que ya habías cargado queda conciliado. Lo que el banco cobró y nadie anotó te lo propone con su categoría. Y lo que cargaste pero no apareció, te avisa.</p>
+        <div class="ejemplos"><code>✓ conciliados</code><code>＋ en el resumen, sin cargar</code><code>? cargados, sin aparecer</code></div>
+        <div class="captura" data-lupa="img/t-concilia.webp"><img src="img/t-concilia.webp" alt="Conciliación del resumen: conciliados, en el resumen sin cargar y cargados sin aparecer" loading="lazy" width="1600" height="1455" style="max-height: 430px; object-fit: cover; object-position: top"></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="bloque seccion-tarjetas" id="tarjetas">
-    <div class="envoltura">
-      <div class="cabeza">
-        <span class="etiqueta">Tarjetas, a fondo</span>
-        <h2>Cada resumen, cada cuota, cada reclamo.</h2>
-        <p>Cuando importás el resumen se actualiza todo lo que depende de él. Y lo que esperás que te devuelvan queda anotado hasta que llega.</p>
-      </div>
-      <div class="actualiza">
-        <div><span>Cierre y vencimiento</span><b>25/10 · 07/11</b><small>Del próximo resumen de cada tarjeta</small></div>
-        <div><span>Cuotas pendientes</span><b>cuota 7 de 12</b><small>Compra por compra, hasta la última</small></div>
-        <div><span>Próximo resumen</span><b>$ 790.700</b><small>Lo pagado y lo que falta de cada uno</small></div>
-        <div><span>Reclamos y reintegros</span><b>$ 14.150</b><small>Descuentos que esperás que te devuelvan</small></div>
-      </div>
-      <div class="solapas" role="tablist" aria-label="Cuadros de la pantalla Tarjetas" id="solapas-t">
-        <button id="t-sol-0" role="tab" aria-selected="true">Importar y conciliar</button>
-        <button id="t-sol-1" role="tab" aria-selected="false">Mes a mes</button>
-        <button id="t-sol-2" role="tab" aria-selected="false">Detalle del resumen</button>
-        <button id="t-sol-3" role="tab" aria-selected="false">Cuotas a pagar</button>
-        <button id="t-sol-4" role="tab" aria-selected="false">Histórico</button>
-        <button id="t-sol-5" role="tab" aria-selected="false">Reclamos y pendientes</button>
-      </div>
-      <figure class="ventana">
-        <div class="ventana-barra" aria-hidden="true"><i></i><i></i><i></i><span id="t-titulo">Mis Resúmenes · Tarjetas</span></div>
-        <img id="t-img" src="img/t-importar-a.webp" width="1440" height="1264" alt="">
-      </figure>
-      <div class="tarjetas-texto">
-        <p id="t-texto" aria-live="polite"></p>
-        <div class="pasar"><button type="button" id="t-ant" aria-label="Cuadro anterior">‹</button><button type="button" id="t-sig" aria-label="Cuadro siguiente">›</button></div>
-      </div>
+<!-- ============ ARRANCAR ============ -->
+<section id="arrancar">
+  <div class="envoltura">
+    <div class="cabeza aparece">
+      <span class="antes">Arrancar</span>
+      <h2>En unos minutos tenés tu libreta armada.</h2>
+      <p>La primera vez, un asistente te pregunta lo justo y arma todo: tus cuentas, tus tarjetas y las categorías. Después importás tu primer resumen o cargás por el chat.</p>
     </div>
-  </section>
-
-  <section class="bloque" id="funciones" style="padding-top: 0">
-    <div class="envoltura">
-      <div class="cabeza">
-        <span class="etiqueta">Lo que hace por vos</span>
-        <h2>Una sola pantalla para toda la plata de la casa.</h2>
-        <p>Cargás lo que gastás o importás el resumen. Mis Resúmenes ordena, suma, concilia y proyecta.</p>
-      </div>
-
-      <div class="funcion">
-        <div class="funcion-texto">
-          <span class="etiqueta">Cuentas</span>
-          <h3>Tu saldo disponible, el de verdad</h3>
-          <p>Efectivo más bancos, menos lo que debés de las tarjetas y lo que falta pagar del mes. Un número que podés mirar antes de gastar.</p>
-          <ul class="puntos">
-            <li>Pesos y dólares, cada uno en su moneda</li>
-            <li>Bancos, billeteras y tarjetas, todo en una lista</li>
-            <li>Mirás cualquier mes con las flechas</li>
-          </ul>
-        </div>
-        <figure class="captura"><img src="img/pc-cuentas.webp" width="1440" height="900" loading="lazy" alt="Pantalla Cuentas con bancos, tarjetas, agenda de pagos y saldo disponible"><figcaption>Cuentas · Familia Romero (datos de ejemplo)</figcaption></figure>
-      </div>
-
-      <div class="funcion invertida">
-        <div class="funcion-texto">
-          <span class="etiqueta">Flujo mensual</span>
-          <h3>Tu año entero en una tabla</h3>
-          <p>Ingresos, egresos y resultado de cada mes. Hasta hoy, lo real; de acá en adelante, lo proyectado y lo que ya está comprometido.</p>
-          <ul class="puntos">
-            <li>En pesos, en miles o en dólares</li>
-            <li>Criterio pagado o devengado, con un clic</li>
-            <li>A Excel cuando quieras</li>
-          </ul>
-        </div>
-        <figure class="captura"><img src="img/pc-consolidado.webp" width="1440" height="440" loading="lazy" alt="Flujo mensual consolidado de 2026 con ingresos, egresos y resultado por mes"><figcaption>Flujo mensual · real hasta octubre, proyectado después (en cursiva)</figcaption></figure>
-      </div>
-
-      <div class="funcion">
-        <div class="funcion-texto">
-          <span class="etiqueta">Préstamos</span>
-          <h3>El préstamo UVA, en pesos y sin sorpresas</h3>
-          <p>Cargás la marcha del préstamo y la app sabe cuánto es capital y cuánto interés en cada cuota. El valor de la UVA y el dólar oficial los trae sola del Banco Central.</p>
-          <ul class="puntos">
-            <li>Cuotas pagadas, deuda y próximo vencimiento</li>
-            <li>Débito automático, tarjeta o pago manual</li>
-            <li>Simulá un préstamo antes de sacarlo</li>
-          </ul>
-        </div>
-        <figure class="captura"><img src="img/pc-prestamos.webp" width="1440" height="340" loading="lazy" alt="Préstamo UVA: 18 de 60 cuotas pagas, deuda y próxima cuota"><figcaption>Préstamos · UVA del BCRA actualizada sola</figcaption></figure>
-      </div>
-
-      <div class="funcion invertida">
-        <div class="funcion-texto">
-          <span class="etiqueta">Proyecciones</span>
-          <h3>Sabé hoy si llegás a diciembre</h3>
-          <p>Partí del promedio de los últimos seis meses y ajustá lo que sabés que viene: el aguinaldo, las vacaciones, el seguro anual. El acumulado te avisa si un mes se pone en rojo.</p>
-          <ul class="puntos">
-            <li>Promedios listos para usar en todo el año</li>
-            <li>Lo que guardás acá aparece en el flujo y en el tablero</li>
-          </ul>
-        </div>
-        <figure class="captura"><img src="img/pc-proyecciones.webp" width="1440" height="530" loading="lazy" alt="Grilla de proyección con promedio, octubre, noviembre y diciembre y acumulado"><figcaption>Proyecciones · promedio de 6 meses y acumulado</figcaption></figure>
-      </div>
+    <div class="pasos aparece">
+      <div class="paso"><span class="num">1</span><h3>Quiénes son y tus cuentas</h3><p>La familia, los bancos y billeteras que usan y con cuánto arranca cada una.</p><div class="telefono" data-lupa="img/asis-cuentas.webp"><img src="img/asis-cuentas.webp" alt="Asistente de inicio: cuentas" loading="lazy" width="780" height="1688"></div></div>
+      <div class="paso"><span class="num">2</span><h3>Tus tarjetas</h3><p>Solo el banco y la marca: el cierre y el vencimiento los toma de cada resumen.</p><div class="telefono" data-lupa="img/asis-tarjetas.webp"><img src="img/asis-tarjetas.webp" alt="Asistente de inicio: tarjetas" loading="lazy" width="780" height="1688"></div></div>
+      <div class="paso"><span class="num">3</span><h3>Las categorías</h3><p>Vienen armadas para una casa argentina. Sacás las que no te sirven y listo.</p><div class="telefono" data-lupa="img/asis-categorias.webp"><img src="img/asis-categorias.webp" alt="Asistente de inicio: categorías" loading="lazy" width="780" height="1688"></div></div>
+      <div class="paso"><span class="num">4</span><h3>Revisás y empezás</h3><p>Ves todo junto antes de crear la libreta. Todo se puede cambiar después.</p><div class="telefono" data-lupa="img/asis-listo.webp"><img src="img/asis-listo.webp" alt="Asistente de inicio: resumen final" loading="lazy" width="780" height="1688"></div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="bloque" style="padding-top: 0">
-    <div class="envoltura">
-      <div class="cabeza">
-        <span class="etiqueta">Lo que ya comprometiste</span>
-        <h2>Las cuotas que vienen, antes de que lleguen.</h2>
-        <p>Así ve la app las tarjetas de una familia de ejemplo: lo que ya está comprado y todavía falta pagar, mes por mes. Pasá el mouse o tocá una barra.</p>
-      </div>
-      <div class="panel-cuotas">
-        <div class="tarjeta">
-          <h3>Cuotas a pagar por mes <span class="ejemplo">ejemplo</span></h3>
-          <p class="sub">Familia Romero · tres tarjetas · en pesos</p>
-          <div class="leyenda" id="leyenda"></div>
-          <div class="grafico" id="grafico"></div>
-        </div>
-        <div class="cifras">
-          <div><span>Saldo disponible <i class="ejemplo">ejemplo</i></span><b class="bien">$ 7.776.074</b><small>Efectivo + bancos − tarjetas − agenda</small></div>
-          <div><span>Cuotas por pagar</span><b class="deuda">$ 4.057.567</b><small>De octubre a marzo, en 3 tarjetas</small></div>
-          <div><span>Ahorro de octubre</span><b class="bien">$ 1.300.467</b><small>26,8 % de los ingresos del mes</small></div>
-          <div><span>Préstamo UVA</span><b>19 de 60</b><small>Próxima cuota $ 296.859 · vence 15/10</small></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="bloque fondo-marca" id="celular">
-    <div class="envoltura">
-      <div class="cabeza">
-        <span class="etiqueta">En la compu y en el celular</span>
-        <h2>La misma libreta, en el bolsillo.</h2>
-        <p>En la compu analizás y conciliás con pantalla grande. En el celular consultás saldos, cuotas y gráficos, y cargás un gasto en el momento en que lo hacés.</p>
-      </div>
-      <div class="celulares">
-        <figure><div class="cel"><img src="img/cel-tablero.webp" width="585" height="1266" loading="lazy" alt="Tablero en el celular: ingresos, gastos y ahorro del mes"></div><figcaption>Cuánto entró y cuánto salió</figcaption></figure>
-        <figure><div class="cel"><img src="img/cel-graficos.webp" width="585" height="1266" loading="lazy" alt="Gráfico de ingresos por mes en el celular"></div><figcaption>Gráficos mes a mes</figcaption></figure>
-        <figure><div class="cel"><img src="img/cel-tarjetas.webp" width="585" height="1266" loading="lazy" alt="Tarjetas con cierre, vencimiento y deuda total en el celular"></div><figcaption>Tus tarjetas y sus cierres</figcaption></figure>
-      </div>
-    </div>
-  </section>
-
-  <section class="bloque recorrido" id="recorrido">
-    <div class="envoltura">
-      <div class="cabeza">
-        <span class="etiqueta">Por dentro</span>
-        <h2>Mirá la app como si ya la tuvieras.</h2>
-      </div>
-      <div class="solapas" role="tablist" aria-label="Pantallas de la app" id="solapas">
-        <button id="sol-graficos" role="tab" aria-selected="true" data-i="0">Gráficos</button>
-        <button id="sol-tablero" role="tab" aria-selected="false" data-i="1">Análisis</button>
-        <button id="sol-movimientos" role="tab" aria-selected="false" data-i="2">Movimientos</button>
-        <button id="sol-flujo" role="tab" aria-selected="false" data-i="3">Flujo mensual</button>
-      </div>
-      <div class="compu">
-        <div class="pantalla"><img id="recorrido-img" src="img/pc-graficos.webp" width="1440" height="900" loading="lazy" alt=""></div>
-        <div class="base"></div>
-      </div>
-      <p class="recorrido-texto" id="recorrido-texto" aria-live="polite"></p>
-    </div>
-  </section>
-
-  <section class="bloque" id="como-funciona" style="padding-top: 0">
-    <div class="envoltura">
-      <div class="cabeza">
-        <span class="etiqueta">Cómo funciona</span>
-        <h2>En una tarde la tenés andando.</h2>
-      </div>
-      <div class="pasos">
-        <article class="paso"><span class="n">1</span><h3>Contale quiénes son</h3><p>Un asistente te pregunta quiénes forman la familia, qué bancos, billeteras y tarjetas usan, y qué categorías te sirven. Arranca con 73 categorías listas.</p></article>
-        <article class="paso"><span class="n">2</span><h3>Cargá o importá</h3><p>Anotá los gastos desde el chat cuando los hacés. Cuando llega el resumen de la tarjeta, importás el PDF y se concilia con lo cargado. También el extracto del banco o una planilla de Excel.</p></article>
-        <article class="paso"><span class="n">3</span><h3>Mirá todo junto</h3><p>Saldo disponible, cuotas que vienen, flujo del año, préstamos y gráficos. Lo que no cierra, la app te lo marca para revisar.</p></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="bloque" id="tus-datos" style="padding-top: 0">
-    <div class="envoltura seguridad">
+<!-- ============ CUENTAS ============ -->
+<section id="cuentas" class="alterna">
+  <div class="envoltura lado">
+    <div class="aparece">
       <div class="cabeza" style="margin-bottom: 0">
-        <span class="etiqueta">Tus datos son tuyos</span>
-        <h2>Tus números se quedan en tu compu.</h2>
-        <p>No hay que darle la clave del banco a nadie ni subir tus movimientos a una nube ajena. La libreta vive en tu computadora y vos decidís dónde guardás la copia.</p>
+        <span class="antes">Después: tus cuentas</span>
+        <h2>El día a día de toda la plata de la casa.</h2>
+        <p>Bancos, billeteras, efectivo y tarjetas en una sola pantalla, con el saldo disponible de verdad.</p>
       </div>
-      <div class="garantias">
-        <div class="garantia"><h3>Backup cifrado</h3><p>Copias automáticas en un pendrive o en tu Google Drive, cifradas con tu contraseña (AES-256).</p></div>
-        <div class="garantia"><h3>Clave de recuperación</h3><p>Si te olvidás la contraseña, una hoja de recuperación te devuelve el acceso a tus copias.</p></div>
-        <div class="garantia"><h3>Entrás con PIN</h3><p>La app pide un PIN para abrirse, en la compu y en el celular.</p></div>
-        <div class="garantia"><h3>Nunca te los retenemos</h3><p>Aunque no renueves la suscripción, tus datos se siguen viendo y se exportan a Excel.</p></div>
-      </div>
+      <ul class="lista">
+        <li><div><b>Saldo disponible</b> <span>— efectivo más bancos, menos tarjetas y lo que vence en el mes.</span></div></li>
+        <li><div><b>Cada cuenta con su logo</b> <span>— tocás una y ves sus movimientos.</span></div></li>
+        <li><div><b>Pesos y dólares</b> <span>— cada uno en su moneda, con el tipo de cambio del mes.</span></div></li>
+        <li><div><b>Préstamos</b> <span>— la deuda, las cuotas y el UVA al día.</span></div></li>
+      </ul>
     </div>
-  </section>
+    <div class="combo aparece">
+      <div class="ventana" data-lupa="img/pc-cuentas.webp"><div class="puntos"><i></i><i></i><i></i></div><img src="img/pc-cuentas.webp" alt="Cuentas en la compu, con los logos de los bancos" loading="lazy" width="1400" height="815"></div>
+      <div class="telefono" data-lupa="img/cel-cuentas.webp"><img src="img/cel-cuentas.webp" alt="Cuentas en el celular" loading="lazy" width="780" height="1688"></div>
+    </div>
+  </div>
+</section>
 
-  <section class="bloque" id="precio" style="padding-top: 0">
-    <div class="envoltura">
-      <div class="cabeza">
-        <span class="etiqueta">Precio</span>
-        <h2>Probala completa. Pagá solo si te sirve.</h2>
-        <p>Treinta días con todas las funciones, sin tarjeta ni registro.</p>
+<!-- ============ GRÁFICOS ============ -->
+<section id="graficos">
+  <div class="envoltura">
+    <div class="cabeza aparece">
+      <span class="antes">Gráficos y análisis</span>
+      <h2>En qué se va la plata, de un vistazo.</h2>
+      <p>Por rubro y categoría, mes a mes, en pesos o en dólares. En la compu y en el celular.</p>
+    </div>
+    <div class="visor aparece" data-visor>
+      <div class="pestanas" role="tablist" aria-label="Gráficos">
+        <button role="tab" data-img="img/pc-graficos.webp" data-titulo="En qué se va la plata" data-texto="La torta por rubro, con el total en pesos y en dólares, y al lado cada rubro con su porcentaje. Del período o de un mes." data-puntos="Lo que pesa menos va junto en «Varios»|Ingresos y egresos de cada mes, abajo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a9 9 0 1 0 9 9h-9z"/><path d="M15 3.5A9 9 0 0 1 20.5 9H15z"/></svg>En qué se va</button>
+        <button role="tab" data-img="img/cel-graficos.webp" data-cel="1" data-titulo="Y en el celular" data-texto="El mismo gráfico, pensado para la pantalla del teléfono." data-puntos="Del período o de un mes|En pesos y en dólares"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg>Celular</button>
+        <button role="tab" data-img="img/pc-ranking.webp" data-titulo="Los principales gastos" data-texto="Rankings de los gastos, los ingresos, los beneficiarios y las personas, con su porcentaje, en pesos y en dólares." data-puntos="Top 10 por categoría o por rubro|Quién gasta qué"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h11M4 18h6"/></svg>Ranking</button>
+        <button role="tab" data-img="img/pc-rubro.webp" data-titulo="Un rubro a fondo" data-texto="La evolución de un rubro mes a mes y sus categorías en un mapa de calor: dónde subió, dónde bajó." data-puntos="Importe, % del gasto o variación mensual|Tocás una celda y ves los movimientos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Rubro a fondo</button>
       </div>
-      <div class="planes">
-        <article class="plan destacado">
-          <h3>Prueba gratis</h3>
-          <div class="precio">30 días</div>
-          <p>La app completa, para toda la familia.</p>
-          <ul class="puntos"><li>Todas las funciones</li><li>Con tus propios números</li><li>Al terminar, tus datos siguen siendo tuyos</li></ul>
-          <a class="boton primario" href="#descargar">Descargar</a>
-        </article>
-        <article class="plan">
-          <h3>Después, vos elegís</h3>
-          <div class="precio">Mensual o anual</div>
-          <p>Si te sirve, seguís con una suscripción. El precio lo anunciamos con el lanzamiento.</p>
-          <ul class="puntos"><li>Bancos nuevos y actualizaciones incluidas</li><li>El plan anual, con descuento</li><li>Cancelás cuando quieras</li></ul>
-          <a class="boton secundario" href="#contacto">Avisame del lanzamiento</a>
-        </article>
+      <div class="panel-vista">
+        <div class="texto"><h3></h3><p></p><ul></ul><div class="contador"></div></div>
+        <div class="imagen"><img alt="" width="1600" height="1000"></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="bloque" id="preguntas" style="padding-top: 0">
-    <div class="envoltura">
-      <div class="cabeza">
-        <span class="etiqueta">Preguntas frecuentes</span>
-        <h2>Lo que nos preguntan antes de empezar.</h2>
+<!-- ============ MÁS ============ -->
+<section id="mas" class="alterna">
+  <div class="envoltura">
+    <div class="cabeza aparece">
+      <span class="antes">Y además</span>
+      <h2>Todo lo que necesitás para ordenarte.</h2>
+    </div>
+    <div class="visor aparece" data-visor>
+      <div class="pestanas" role="tablist" aria-label="Más pantallas">
+        <button role="tab" data-img="img/pc-prestamo-uva.webp" data-titulo="Préstamos, con su marcha" data-texto="Cada préstamo con su cuadro de cuotas: capital, intereses y saldo. Si es UVA, la deuda en pesos al día con el valor del BCRA." data-puntos="Ver en pesos, UVA o dólares|Pagar una cuota o hacer un pago adicional"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10l9-6 9 6M5 10v9h14v-9M9 19v-5h6v5"/></svg>Préstamos</button>
+        <button role="tab" data-img="img/pc-flujo.webp" data-titulo="Flujo mensual" data-texto="Ingresos, egresos y resultado de cada mes del año, con lo real y lo proyectado." data-puntos="Criterio pagado o devengado|En pesos, en miles o en dólares|Se baja a Excel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/></svg>Flujo mensual</button>
+        <button role="tab" data-img="img/pc-movimientos.webp" data-titulo="Movimientos" data-texto="Todos los movimientos con filtros por cuenta, categoría, persona y fechas. Se corrigen de a uno o en masa." data-puntos="Exportar e importar Excel|Edición masiva"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>Movimientos</button>
+        <button role="tab" data-img="img/pc-categorias.webp" data-titulo="Tus categorías" data-texto="Rubros y categorías a tu medida: los creás, renombrás y ordenás arrastrando. Cada uno con su emoji." data-puntos="Ingresos, egresos y los rangos que quieras"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><path d="M7.5 7.5h.01"/></svg>Categorías</button>
       </div>
-      <div class="preguntas">
-        <details><summary>¿Tengo que darle la clave del home banking?</summary><p>No. Mis Resúmenes no entra a tu banco. Vos cargás los gastos o importás el resumen y el extracto que bajás del home banking.</p></details>
-        <details><summary>¿Qué resúmenes puede leer en PDF?</summary><p>Lee los resúmenes de tarjeta y los extractos en PDF de varios bancos y billeteras, y sumamos más con cada actualización. Si el tuyo todavía no está, podés pegar el texto del resumen o cargar los movimientos desde una planilla de Excel.</p></details>
-        <details><summary>¿Cómo es eso de cargar desde un chat?</summary><p>Escribís el gasto como te sale, por ejemplo «nafta 45 lucas visa 3 cuotas» o «súper 28.500 efectivo». La app entiende el importe, la cuenta o tarjeta, las cuotas y la fecha, te muestra la ficha y la confirmás. Si algo no lo entiende, te pregunta.</p></details>
-        <details><summary>¿Qué pasa con lo que está en el resumen y yo no cargué?</summary><p>La app te lo propone como gasto nuevo, con la categoría que corresponde según el comercio. Lo revisás, cambiás lo que quieras y se carga al cerrar el resumen.</p></details>
-        <details><summary>¿Y si me cobraron de más o no me hicieron un descuento?</summary><p>Lo marcás como reclamo en el gasto, con lo que esperás que te devuelvan. Queda en Pendientes hasta que llega el reintegro; ahí tocás «Llegó» y se cierra. También sirve para lo que te deben de un gasto compartido.</p></details>
-        <details><summary>¿Sirve si tengo cuentas en dólares?</summary><p>Sí. Cada cuenta tiene su moneda, las compras de dólares guardan el tipo de cambio y el flujo mensual se puede ver en pesos o en dólares, con el dólar oficial del BCRA.</p></details>
-        <details><summary>¿La puede usar toda la familia?</summary><p>Sí. Cada movimiento puede quedar a nombre de quién lo hizo, y el tablero se filtra por persona.</p></details>
-        <details><summary>¿Es gratis?</summary><p>Mientras dure la versión de prueba (beta), sí. Cuando salga la versión final vas a poder seguir con una suscripción mensual o anual, y tus datos siempre siguen siendo tuyos.</p></details>
-        <details><summary>¿Necesito internet?</summary><p>La app funciona en tu compu sin conexión. Usa internet solo para traer el valor de la UVA y el dólar oficial del Banco Central, y para buscar actualizaciones.</p></details>
-        <details><summary>¿Qué pasa si dejo de pagar?</summary><p>No perdés nada. Tus datos siguen en tu compu y los podés ver y exportar a Excel. Para cargar e importar de nuevo, renovás la suscripción y seguís como si nada.</p></details>
-        <details><summary>Vengo de otra app o de una planilla. ¿Puedo pasar lo que tengo?</summary><p>Sí. Podés importar tus movimientos desde una planilla de Excel y la app los ordena en sus categorías.</p></details>
+      <div class="panel-vista">
+        <div class="texto"><h3></h3><p></p><ul></ul><div class="contador"></div></div>
+        <div class="imagen"><img alt="" width="1600" height="1000"></div>
       </div>
     </div>
-  </section>
 
-  <section class="bloque" id="descargar" style="padding-top: 0">
-    <div class="envoltura">
-      <div class="cabeza">
-        <span class="etiqueta">Descargar</span>
-        <h2>Descargala y probala con tus números.</h2>
-        <p>Es la versión de prueba (beta): gratis y completa. Se va a seguir mejorando con cada actualización.</p>
-      </div>
-      <div class="descargas">
-        <article class="descarga">
-          <div class="descarga-cab"><h3>Windows</h3><span class="beta">Beta</span></div>
-          <p class="chico">Windows 10 y 11 · 134 MB</p>
-          <a class="boton primario" href="https://github.com/alejofolgueira-beep/mis-resumenes/releases/latest/download/Mis-Resumenes-Windows.exe">Descargar para Windows</a>
-          <ol class="pasos-instalar">
-            <li>Abrí el archivo que se descargó.</li>
-            <li>Si aparece «Windows protegió tu PC», tocá <b>Más información</b> y después <b>Ejecutar de todas formas</b>. Avisa porque la versión de prueba todavía no está firmada.</li>
-            <li>El asistente te pregunta quiénes son, qué bancos, billeteras y tarjetas usan, y listo.</li>
-          </ol>
-        </article>
-        <article class="descarga">
-          <div class="descarga-cab"><h3>Android</h3><span class="beta">Beta</span></div>
-          <p class="chico">Android 7 o más nuevo · 36 MB</p>
-          <a class="boton primario" href="https://github.com/alejofolgueira-beep/mis-resumenes/releases/latest/download/Mis-Resumenes-Android.apk">Descargar para Android</a>
-          <ol class="pasos-instalar">
-            <li>Descargalo desde el celular y abrí el archivo.</li>
-            <li>Si Android pregunta, permití instalar apps de ese origen (el navegador o Archivos).</li>
-            <li>En la compu, abrí <b>Configuración › Celulares</b>, tocá <b>Mostrar el código</b> y escanealo con la app.</li>
-          </ol>
-        </article>
-        <article class="descarga proximamente">
-          <div class="descarga-cab"><h3>Mac y iPhone</h3><span class="beta gris">Próximamente</span></div>
-          <p class="chico">La misma app, con la misma libreta. Escribinos y te avisamos cuando esté.</p>
-          <a class="boton secundario" href="#contacto">Avisame</a>
-        </article>
-      </div>
-      <p class="aviso-beta">El celular necesita la app de la compu: ahí vive la libreta completa, y el celular se suma con un código. Tus datos viajan cifrados entre tus aparatos.</p>
+    <div class="tres" style="margin-top: 28px">
+      <div class="tarjeta aparece"><div class="ic">🔒</div><h3>Tus datos, en tu casa</h3><p>La libreta vive en tu compu y en tus celulares. Entre ellos viaja cifrada: nadie más la puede leer.</p></div>
+      <div class="tarjeta aparece"><div class="ic">💾</div><h3>Backups automáticos</h3><p>Una copia cifrada por día, en la carpeta que elijas y en un pendrive si lo tenés enchufado.</p></div>
+      <div class="tarjeta aparece"><div class="ic">📱</div><h3>Compu y celular</h3><p>Lo pesado en la compu (importar, revisar, analizar) y el día a día en el bolsillo, sincronizados solos.</p></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="bloque" id="contacto" style="padding-top: 0">
-    <div class="envoltura">
-      <div class="cierre">
-        <div>
-          <h2>Dejá de sumar resúmenes a mano.</h2>
-          <p>¿Dudas, ideas o algo que no anduvo? Escribinos: te responde una persona.</p>
-        </div>
-        <div class="contacto">
-          <span>Escribinos a</span>
-          <div class="correo" id="correo">misresumenesintegrados@gmail.com</div>
-          <button type="button" id="copiar">Copiar el correo</button>
-        </div>
+<!-- ============ PREGUNTAS ============ -->
+<section id="preguntas">
+  <div class="envoltura">
+    <div class="cabeza aparece"><span class="antes">Preguntas</span><h2>Lo que nos preguntan.</h2></div>
+    <div class="preguntas aparece">
+      <details><summary>¿Es gratis?</summary><p>Sí: estamos en período de prueba y la podés usar completa, sin límites.</p></details>
+      <details><summary>¿Necesito internet?</summary><p>No para usarla. Solo para sincronizar el celular con la compu y para bajar las actualizaciones, que se instalan solas.</p></details>
+      <details><summary>¿Qué resúmenes puedo importar?</summary><p>Los PDF de los resúmenes de tarjeta, y los extractos de los bancos. Si alguno no se lee solo, se carga igual a mano o por el chat.</p></details>
+      <details><summary>¿Mis datos van a algún servidor?</summary><p>No. La libreta queda en tus aparatos. Para pasar del celular a la compu, los cambios viajan cifrados por un buzón que no los puede leer.</p></details>
+      <details><summary>¿Se puede usar entre varios en la familia?</summary><p>Sí: cada uno con su celular, y en cada gasto queda quién lo hizo. Todos ven todo.</p></details>
+      <details><summary>¿Y en Mac o iPhone?</summary><p>Todavía no: por ahora, Windows y Android. Mac y iPhone vienen después.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DESCARGAR ============ -->
+<section id="descargar" style="padding-top: 0">
+  <div class="envoltura">
+    <div class="descarga aparece">
+      <h2>Probala con tus resúmenes.</h2>
+      <p>Bajala, seguí el asistente e importá tu primer resumen. Es gratis mientras dure la prueba.</p>
+      <div class="acciones">
+        <a class="boton primario" href="https://github.com/alejofolgueira-beep/mis-resumenes/releases/latest/download/Mis-Resumenes-Windows.exe">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5 10.5 4.5v7H3zM11.5 4.4 21 3v8.5h-9.5zM3 12.5h7.5v7L3 18.5zM11.5 12.5H21V21l-9.5-1.4z"/></svg>
+          Windows
+        </a>
+        <a class="boton claro" href="https://github.com/alejofolgueira-beep/mis-resumenes/releases/latest/download/Mis-Resumenes-Android.apk">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 9.5 19.4 6.4a.5.5 0 0 0-.9-.5l-1.8 3.2A10.6 10.6 0 0 0 12 8.2c-1.7 0-3.3.3-4.7.9L5.5 5.9a.5.5 0 1 0-.9.5l1.8 3.1A8.9 8.9 0 0 0 2 16.5h20a8.9 8.9 0 0 0-4.4-7zM7.5 13.8a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm9 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg>
+          Android
+        </a>
+      </div>
+      <div class="pasos-instalar">
+        <div><b>En Windows:</b> si aparece «Windows protegió su PC», tocá «Más información» y «Ejecutar de todos modos». La app se actualiza sola.</div>
+        <div><b>En Android:</b> abrí el archivo bajado y permití instalar apps de esa fuente. Después unís el celular con el código QR de la compu.</div>
       </div>
     </div>
-  </section>
-</main>
+  </div>
+</section>
 
 <footer>
   <div class="envoltura">
-    <span>Mis Resúmenes · Versión de prueba (beta) · Hecho en Argentina por Alejo Folgueira, contador público (UBA)</span>
-    <span>Las pantallas muestran a la Familia Romero, una familia de ejemplo con datos inventados.</span>
+    <span>Mis Resúmenes · Todos tus resúmenes en un solo lugar</span>
+    <span>¿Dudas? <a href="mailto:misresumenesintegrados@gmail.com">misresumenesintegrados@gmail.com</a></span>
   </div>
 </footer>
 
+<dialog class="lupa"><button aria-label="Cerrar">×</button><img alt=""></dialog>
+
 <script>
-(function () {
-  "use strict";
-
-  /* ---------- gráfico: cuotas a pagar por mes (datos de ejemplo de la app) ---------- */
-  var MESES = ["Oct 26", "Nov 26", "Dic 26", "Ene 27", "Feb 27", "Mar 27"];
-  var SERIES = [
-    { nombre: "Visa de Martín", color: "var(--cian)", valores: [1135800, 790700, 360000, 140000, 140000, 140000] },
-    { nombre: "Master de Lucía", color: "var(--indigo)", valores: [395300, 129200, 63000, 0, 0, 0] },
-    { nombre: "Visa de Lucía", color: "var(--coral)", valores: [170233, 148333, 148333, 148333, 148333, 0] }
-  ];
-  var pesos = new Intl.NumberFormat("es-AR", { maximumFractionDigits: 0 });
-  var plata = function (n) { return "$ " + pesos.format(Math.round(n)); };
-  var millones = function (n) { return (n / 1e6).toLocaleString("es-AR", { maximumFractionDigits: 1 }) + " M"; };
-
-  var leyenda = document.getElementById("leyenda");
-  SERIES.forEach(function (s) {
-    var e = document.createElement("span");
-    var i = document.createElement("i"); i.style.background = s.color;
-    e.appendChild(i); e.appendChild(document.createTextNode(s.nombre));
-    leyenda.appendChild(e);
-  });
-
-  var W = 640, H = 300, IZQ = 52, DER = 8, ARR = 26, ABA = 30;
-  var max = 2000000, pasos = [0, 500000, 1000000, 1500000, 2000000];
-  var ancho = (W - IZQ - DER) / MESES.length, barra = Math.min(54, ancho * 0.56);
-  var y = function (v) { return ARR + (H - ARR - ABA) * (1 - v / max); };
-  var ns = "http://www.w3.org/2000/svg";
-  var svg = document.createElementNS(ns, "svg");
-  svg.setAttribute("viewBox", "0 0 " + W + " " + H);
-  svg.setAttribute("role", "img");
-  svg.setAttribute("aria-label", "Cuotas a pagar por mes, de octubre 2026 a marzo 2027, apiladas por tarjeta");
-  function el(t, a, txt) { var e = document.createElementNS(ns, t); for (var k in a) e.setAttribute(k, a[k]); if (txt != null) e.textContent = txt; return e; }
-  pasos.forEach(function (p) {
-    svg.appendChild(el("line", { x1: IZQ, x2: W - DER, y1: y(p), y2: y(p), class: "grilla" }));
-    svg.appendChild(el("text", { x: IZQ - 8, y: y(p) + 4, "text-anchor": "end", class: "eje" }, p === 0 ? "0" : millones(p)));
-  });
-  var globo = document.createElement("div"); globo.className = "globo"; globo.hidden = true;
-  var cont = document.getElementById("grafico");
-  MESES.forEach(function (m, i) {
-    var g = el("g", { class: "columna", tabindex: "0" });
-    var x0 = IZQ + ancho * i;
-    g.appendChild(el("rect", { x: x0 + 2, y: ARR - 6, width: ancho - 4, height: H - ARR - ABA + 6, rx: 6, fill: "transparent", class: "golpe" }));
-    var base = 0, total = 0;
-    SERIES.forEach(function (s) { total += s.valores[i]; });
-    var visibles = SERIES.filter(function (s) { return s.valores[i] > 0; });
-    visibles.forEach(function (s, k) {
-      var v = s.valores[i];
-      var arriba = y(base + v), abajo = y(base);
-      var alto = Math.max(0, abajo - arriba - (k < visibles.length - 1 ? 2 : 0));
-      var r = k === visibles.length - 1 ? Math.min(4, alto / 2) : 0;
-      var xb = x0 + (ancho - barra) / 2;
-      var d = "M" + xb + "," + (abajo) + " V" + (abajo - alto + r) + (r ? " Q" + xb + "," + (abajo - alto) + " " + (xb + r) + "," + (abajo - alto) + " H" + (xb + barra - r) + " Q" + (xb + barra) + "," + (abajo - alto) + " " + (xb + barra) + "," + (abajo - alto + r) : " H" + (xb + barra)) + " V" + abajo + " Z";
-      g.appendChild(el("path", { d: d, style: "fill:" + s.color }));
-      base += v;
-    });
-    g.appendChild(el("text", { x: x0 + ancho / 2, y: y(total) - 8, "text-anchor": "middle", class: "valor" }, millones(total)));
-    g.appendChild(el("text", { x: x0 + ancho / 2, y: H - 8, "text-anchor": "middle", class: "eje" }, m));
-    function mostrar() {
-      cont.querySelectorAll(".columna.activa").forEach(function (c) { c.classList.remove("activa"); });
-      g.classList.add("activa");
-      globo.textContent = "";
-      var t = document.createElement("div"); t.style.fontWeight = "600"; t.style.marginBottom = "4px"; t.textContent = m; globo.appendChild(t);
-      SERIES.forEach(function (s) {
-        var f = document.createElement("div"); f.className = "f";
-        var a = document.createElement("span"); a.textContent = s.nombre;
-        var b = document.createElement("span"); b.className = "num"; b.textContent = s.valores[i] ? plata(s.valores[i]) : "—";
-        f.appendChild(a); f.appendChild(b); globo.appendChild(f);
-      });
-      var tt = document.createElement("div"); tt.className = "f t";
-      var ta = document.createElement("span"); ta.textContent = "Total";
-      var tb = document.createElement("span"); tb.className = "num"; tb.textContent = plata(total);
-      tt.appendChild(ta); tt.appendChild(tb); globo.appendChild(tt);
-      var caja = cont.getBoundingClientRect();
-      var px = (x0 + ancho / 2) / W * caja.width;
-      var py = y(total) / H * caja.height;
-      globo.hidden = false;
-      var mitad = globo.offsetWidth / 2;
-      globo.style.left = Math.max(mitad, Math.min(caja.width - mitad, px)) + "px";
-      globo.style.top = Math.max(globo.offsetHeight + 10, py) + "px";
+// Visores: cada botón cambia la captura y el texto de al lado.
+document.querySelectorAll('[data-visor]').forEach((visor) => {
+  const botones = [...visor.querySelectorAll('[role="tab"]')];
+  const texto = visor.querySelector('.texto');
+  const caja = visor.querySelector('.imagen');
+  const img = caja.querySelector('img');
+  const elegir = (i) => {
+    botones.forEach((b, j) => b.setAttribute('aria-selected', String(i === j)));
+    const b = botones[i];
+    texto.querySelector('h3').textContent = b.dataset.titulo;
+    texto.querySelector('p').textContent = b.dataset.texto;
+    texto.querySelector('ul').innerHTML = '';
+    for (const p of (b.dataset.puntos || '').split('|').filter(Boolean)) {
+      const li = document.createElement('li');
+      li.textContent = p;
+      texto.querySelector('ul').append(li);
     }
-    function ocultar() { g.classList.remove("activa"); globo.hidden = true; }
-    g.addEventListener("mouseenter", mostrar);
-    g.addEventListener("mouseleave", ocultar);
-    g.addEventListener("focus", mostrar);
-    g.addEventListener("blur", ocultar);
-    g.addEventListener("click", mostrar);
-    svg.appendChild(g);
-  });
-  cont.appendChild(svg);
-  cont.appendChild(globo);
-
-  /* ---------- recorrido por la app ---------- */
-  var PANTALLAS = [
-    { img: "img/pc-graficos.webp", alt: "Gráficos de ingresos y egresos por mes y torta de gastos por rubro", texto: "Ingresos y egresos de cada mes con su tendencia, y en qué se va la plata: casa, educación, salud, transporte. En pesos o en dólares." },
-    { img: "img/pc-tablero.webp", alt: "Análisis del mes: ingresos, gastos y ahorro comparados con el mes anterior", texto: "El mes contra el anterior: cuánto entró, cuánto salió, cuánto ahorraste y qué rubro subió o bajó. Se filtra por persona y por cuenta." },
-    { img: "img/pc-movimientos.webp", alt: "Lista de movimientos con categoría, cuenta e importe", texto: "Todos los movimientos de todas las cuentas, con buscador y filtros. Edición masiva, exportar e importar Excel." },
-    { img: "img/pc-consolidado.webp", alt: "Flujo mensual del año", texto: "El año entero: ingresos, egresos y resultado de cada mes, real y proyectado, listo para pasar a Excel." }
-  ];
-  var botones = Array.prototype.slice.call(document.querySelectorAll("#solapas button"));
-  var img = document.getElementById("recorrido-img");
-  var texto = document.getElementById("recorrido-texto");
-  function ir(i) {
-    var p = PANTALLAS[i];
-    img.src = p.img; img.alt = p.alt; texto.textContent = p.texto;
-    botones.forEach(function (b, k) { b.setAttribute("aria-selected", k === i ? "true" : "false"); b.tabIndex = k === i ? 0 : -1; });
-  }
-  botones.forEach(function (b, k) {
-    b.addEventListener("click", function () { ir(k); });
-    b.addEventListener("keydown", function (e) {
-      if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
-        var n = (k + (e.key === "ArrowRight" ? 1 : -1) + botones.length) % botones.length;
-        ir(n); botones[n].focus(); e.preventDefault();
-      }
+    texto.querySelector('.contador').textContent = `Vista ${i + 1} de ${botones.length} · tocá la imagen para agrandarla`;
+    caja.classList.toggle('cel', Boolean(b.dataset.cel));
+    img.src = b.dataset.img;
+    img.alt = b.dataset.titulo;
+    caja.dataset.lupa = b.dataset.img;
+  };
+  botones.forEach((b, i) => {
+    b.addEventListener('click', () => elegir(i));
+    b.addEventListener('keydown', (e) => {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      const k = (i + (e.key === 'ArrowRight' ? 1 : botones.length - 1)) % botones.length;
+      botones[k].focus();
+      elegir(k);
     });
   });
-  ir(0);
+  elegir(0);
+  // Las otras capturas se bajan cuando el visor aparece en pantalla.
+  new IntersectionObserver((es, o) => {
+    if (!es[0].isIntersecting) return;
+    botones.forEach((b) => (new Image().src = b.dataset.img));
+    o.disconnect();
+  }).observe(visor);
+});
 
+// Lupa: tocar una captura la muestra grande.
+const lupa = document.querySelector('dialog.lupa');
+document.addEventListener('click', (e) => {
+  const el = e.target.closest('[data-lupa]');
+  if (!el) return;
+  lupa.querySelector('img').src = el.dataset.lupa;
+  lupa.showModal();
+});
+lupa.addEventListener('click', () => lupa.close());
 
-  /* ---------- tarjetas: cuadros ---------- */
-  var CUADROS = [
-    { img: "img/t-importar-a.webp", alto: 1264, titulo: "Tarjetas · Importar resumen", alt: "Importación del resumen de la Visa de Martín: conciliados, en el resumen sin cargar con su categoría propuesta y cargados sin aparecer", texto: "Pegás o subís el PDF del resumen. Lo que ya habías cargado queda conciliado. Lo que no estaba, te lo propone como gasto nuevo con su categoría (Rappi va a Delivery, Farmacity a Farmacia) y lo cargás al cerrar. Lo cargado que no aparece te queda para revisar." },
-    { img: "img/t-grilla.webp", alto: 310, titulo: "Tarjetas · Mes a mes", alt: "Grilla de tarjetas con cierre, vencimiento, deuda total y cuotas por mes", texto: "Una fila por tarjeta y una columna por mes de pago: cierre y vencimiento del próximo resumen, deuda total y lo que cae cada mes hasta la última cuota." },
-    { img: "img/t-detalle.webp", alto: 846, titulo: "Tarjetas · Visa de Martín · noviembre", alt: "Detalle del resumen de noviembre: consumos, pagos, saldo a pagar y resumen por categoría", texto: "Tocás un mes y ves ese resumen: consumos, pagos y saldo a pagar, y en qué categorías se fue la plata, con lo que viene en cuotas marcado. Desde acá registrás el pago." },
-    { img: "img/t-cuotas.webp", alto: 700, titulo: "Tarjetas · Detalle cuotas a pagar", alt: "Detalle de cuotas a pagar compra por compra con cuotas pagadas, deuda y meses", texto: "Compra por compra: cuántas cuotas van pagadas, cuánto falta y en qué mes cae cada una. Tildás varias y te las suma." },
-    { img: "img/t-historico.webp", alto: 376, titulo: "Tarjetas · Histórico", alt: "Histórico de resúmenes de cada tarjeta, pagados y conciliados", texto: "Los resúmenes de los meses anteriores, pagados y conciliados, para ver cómo vino cada tarjeta." },
-    { img: "img/pendientes.webp", alto: 666, titulo: "Revisión · Pendientes", alt: "Pendientes: lo que te deben y los reclamos por descuentos no aplicados", texto: "Marcás un descuento que no te hicieron, un reintegro que esperás o lo que te deben de un gasto compartido. Cuando llega la plata tocás «Llegó» y queda cerrado." }
-  ];
-  var botonesT = Array.prototype.slice.call(document.querySelectorAll("#solapas-t button"));
-  var imgT = document.getElementById("t-img"), textoT = document.getElementById("t-texto"), tituloT = document.getElementById("t-titulo");
-  var actualT = 0;
-  function verCuadro(i) {
-    actualT = (i + CUADROS.length) % CUADROS.length;
-    var c = CUADROS[actualT];
-    imgT.src = c.img; imgT.alt = c.alt; imgT.setAttribute("height", c.alto);
-    textoT.textContent = c.texto; tituloT.textContent = "Mis Resúmenes · " + c.titulo.replace(/^Tarjetas · /, "Tarjetas › ").replace(/^Revisión · /, "Revisión › ");
-    botonesT.forEach(function (b, k) { b.setAttribute("aria-selected", k === actualT ? "true" : "false"); b.tabIndex = k === actualT ? 0 : -1; });
-  }
-  botonesT.forEach(function (b, k) {
-    b.addEventListener("click", function () { verCuadro(k); });
-    b.addEventListener("keydown", function (e) {
-      if (e.key === "ArrowRight" || e.key === "ArrowLeft") { verCuadro(k + (e.key === "ArrowRight" ? 1 : -1)); botonesT[actualT].focus(); e.preventDefault(); }
-    });
-  });
-  document.getElementById("t-ant").addEventListener("click", function () { verCuadro(actualT - 1); });
-  document.getElementById("t-sig").addEventListener("click", function () { verCuadro(actualT + 1); });
-  verCuadro(0);
-
-  /* ---------- copiar el correo ---------- */
-  var copiar = document.getElementById("copiar");
-  var correo = document.getElementById("correo");
-  copiar.addEventListener("click", function () {
-    var seleccionar = function () {
-      var r = document.createRange(); r.selectNodeContents(correo);
-      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
-      copiar.textContent = "Seleccionado: copialo con Ctrl+C";
-    };
-    try {
-      navigator.clipboard.writeText(correo.textContent.trim()).then(function () { copiar.textContent = "Copiado"; }, seleccionar);
-    } catch (e) { seleccionar(); }
-  });
-})();
+// Aparecen al bajar.
+const vistos = new IntersectionObserver((es) => es.forEach((x) => x.isIntersecting && (x.target.classList.add('visto'), vistos.unobserve(x.target))), { rootMargin: '0px 0px -8% 0px' });
+document.querySelectorAll('.aparece').forEach((el) => vistos.observe(el));
 </script>
 </body>
 </html>
