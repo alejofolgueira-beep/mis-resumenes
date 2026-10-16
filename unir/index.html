@@ -55,6 +55,7 @@ a { color: var(--indigo); }
       <p class="aviso" id="falta" hidden>Todavía no está la app en este celular: descargala con el botón de abajo, instalala y volvé a tocar <b>Abrir en Mis Resúmenes</b>.</p>
       <p id="txt-android">Tocá el botón y la app se abre con el código: en unos segundos queda con todo.</p>
       <p id="txt-iphone" hidden>En el iPhone, Mis Resúmenes se usa desde el navegador, como una app de la pantalla de inicio. Tocá el botón y seguí los pasos: en unos segundos queda con todo.</p>
+      <p class="aviso" id="iphone-ya" hidden>¿Ya la agregaste a la pantalla de inicio? No uses este botón: abrí Mis Resúmenes desde el ícono, tocá <b>Escanear el código</b> y apuntá la cámara a este mismo QR de la compu.</p>
       <a class="boton primario" id="abrir" href="#">Abrir en Mis Resúmenes</a>
       <div id="solo-android">
         <p class="chico">¿No se abre? Es que todavía no la tenés instalada:</p>
@@ -96,6 +97,7 @@ a { color: var(--indigo); }
     abrir.href = "../app/#unir=" + codigo;
     document.getElementById("txt-android").hidden = true;
     document.getElementById("txt-iphone").hidden = false;
+    document.getElementById("iphone-ya").hidden = false;
     document.getElementById("solo-android").hidden = true;
   } else if (android) {
     // Sin la app instalada, Chrome vuelve acá avisando que falta (con el código, para no tener que escanear de nuevo).
