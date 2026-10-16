@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="es-AR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#1b1e6e" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Mis Resúmenes" />
+    <link rel="apple-touch-icon" href="/mis-resumenes/app/icono-180.png" />
+    <link rel="icon" href="/mis-resumenes/app/favicon.png" type="image/png" />
+    <title>Mis Resúmenes</title>
+    <script type="module" crossorigin src="/mis-resumenes/app/assets/index-Cp9yBHSb.js"></script>
+  </head>
+  <body>
+    <div id="raiz"></div>
+    <!-- Algunos módulos de la compu miran process (Node); en el celular no existe: uno mínimo, antes que todo. -->
+    <script>
+      globalThis.process = globalThis.process || { env: { LIBRETA_SIN_ENV: '1' }, versions: { celular: '1' }, argv: [], platform: 'celular', cwd: function () { return '/'; }, nextTick: function (f) { var a = [].slice.call(arguments, 1); queueMicrotask(function () { f.apply(null, a); }); } };
+    </script>
+  </body>
+</html>

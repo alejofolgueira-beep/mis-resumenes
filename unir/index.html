@@ -54,15 +54,18 @@ a { color: var(--indigo); }
       <h1>Sumá este celular a la libreta de tu familia</h1>
       <p class="aviso" id="falta" hidden>Todavía no está la app en este celular: descargala con el botón de abajo, instalala y volvé a tocar <b>Abrir en Mis Resúmenes</b>.</p>
       <p id="txt-android">Tocá el botón y la app se abre con el código: en unos segundos queda con todo.</p>
+      <p id="txt-iphone" hidden>En el iPhone, Mis Resúmenes se usa desde el navegador, como una app de la pantalla de inicio. Tocá el botón y seguí los pasos: en unos segundos queda con todo.</p>
       <a class="boton primario" id="abrir" href="#">Abrir en Mis Resúmenes</a>
-      <p class="chico">¿No se abre? Es que todavía no la tenés instalada:</p>
-      <a class="boton secundario" href="https://github.com/alejofolgueira-beep/mis-resumenes/releases/latest/download/Mis-Resumenes-Android.apk">Descargar la app para Android</a>
-      <ol class="chico">
-        <li>Abrí el archivo descargado. Si Android pregunta, permití instalar apps de ese origen.</li>
-        <li>Volvé a esta página y tocá <b>Abrir en Mis Resúmenes</b>. Si se cerró, escaneá otra vez el código de la compu.</li>
-      </ol>
+      <div id="solo-android">
+        <p class="chico">¿No se abre? Es que todavía no la tenés instalada:</p>
+        <a class="boton secundario" href="https://github.com/alejofolgueira-beep/mis-resumenes/releases/latest/download/Mis-Resumenes-Android.apk">Descargar la app para Android</a>
+        <ol class="chico">
+          <li>Abrí el archivo descargado. Si Android pregunta, permití instalar apps de ese origen.</li>
+          <li>Volvé a esta página y tocá <b>Abrir en Mis Resúmenes</b>. Si se cerró, escaneá otra vez el código de la compu.</li>
+        </ol>
+      </div>
     </div>
-    <p class="aviso" id="no-android" hidden>Por ahora la app es para Android: la de iPhone viene pronto.</p>
+    <p class="aviso" id="otro" hidden>Este código es para un celular: escanealo con la cámara de un Android o de un iPhone.</p>
     <p class="chico">El código lleva la clave de tu familia y no sale de este teléfono. Sirve solo para este celular.</p>
   </section>
 
@@ -86,14 +89,21 @@ a { color: var(--indigo); }
   document.getElementById(valido ? "con-codigo" : "sin-codigo").hidden = false;
   if (!valido) return;
   var android = /Android/i.test(navigator.userAgent);
+  var iphone = /iPhone|iPad|iPod/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
   var abrir = document.getElementById("abrir");
-  if (android) {
+  if (iphone) {
+    // iPhone: la versión web de la app (con el código después de "#unir=", que no viaja a ningún servidor).
+    abrir.href = "../app/#unir=" + codigo;
+    document.getElementById("txt-android").hidden = true;
+    document.getElementById("txt-iphone").hidden = false;
+    document.getElementById("solo-android").hidden = true;
+  } else if (android) {
     // Sin la app instalada, Chrome vuelve acá avisando que falta (con el código, para no tener que escanear de nuevo).
     var vuelta = encodeURIComponent(location.origin + location.pathname + "?falta=1#" + codigo);
     abrir.href = "intent://unir/" + codigo + "#Intent;scheme=misresumenes;package=ar.misresumenes.app;S.browser_fallback_url=" + vuelta + ";end";
   } else {
     abrir.href = "misresumenes://unir/" + codigo;
-    document.getElementById("no-android").hidden = false;
+    document.getElementById("otro").hidden = false;
   }
 })();
 </script>
