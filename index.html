@@ -261,6 +261,9 @@ section { padding: 72px 0; }
 .descarga .pasos-instalar { margin: 26px auto 0; max-width: 760px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; text-align: left; }
 .descarga .pasos-instalar div { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 14px; padding: 16px; font-size: 15px; color: rgba(255, 255, 255, 0.85); }
 .descarga .pasos-instalar b { color: #fff; }
+.descarga .orden-empezar { margin: 18px auto 0; max-width: 620px; padding-left: 1.3em; text-align: left; line-height: 1.55; color: rgba(255, 255, 255, 0.9); font-size: 16px; }
+.descarga .orden-empezar li { margin: 4px 0; }
+.descarga .orden-empezar b { color: #fff; }
 @media (max-width: 700px) { .descarga .pasos-instalar { grid-template-columns: 1fr; } }
 footer { padding: 40px 0 56px; color: var(--tinta-3); font-size: 14px; }
 footer .envoltura { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
@@ -336,7 +339,7 @@ dialog.lupa button { position: fixed; top: 14px; right: 18px; width: 44px; heigh
       <div class="chip"><div class="ic">💵</div><div><b>Pesos y dólares</b><span>Cada resumen, en las dos monedas.</span></div></div>
       <div class="chip"><div class="ic">📊</div><div><b>Varios resúmenes juntos</b><span>Un año entero o el rango que elijas.</span></div></div>
       <div class="chip"><div class="ic">⚖️</div><div><b>Comparar meses</b><span>El histórico de todas las tarjetas.</span></div></div>
-      <div class="chip"><div class="ic">🔔</div><div><b>Agenda de pagos y cobros</b><span>Los vencimientos del mes, su estado y al calendario.</span></div></div>
+      <div class="chip"><div class="ic">🔔</div><div><b>Agenda de pagos y cobros</b><span>Lo que pagás y cobrás cada mes, con aviso en el celular.</span></div></div>
     </div>
 
     <div class="visor aparece" data-visor>
@@ -443,7 +446,7 @@ dialog.lupa button { position: fixed; top: 14px; right: 18px; width: 44px; heigh
       <div class="tarjeta aparece">
         <span class="marcador">💬 Carga a mano, con el chat</span>
         <h3>Escribís como hablás y la app arma la ficha.</h3>
-        <p>Entiende el importe, la tarjeta o la cuenta, la categoría, el comercio, las cuotas y quién lo gastó. Revisás y guardás.</p>
+        <p>Entiende el importe, la tarjeta o la cuenta, la categoría, el comercio, las cuotas y quién lo gastó. Te propone la tarjeta de siempre, lo corregís escribiendo («no, era con la visa») o lo dictás con el micrófono. Revisás y guardás.</p>
         <div class="ejemplos"><code>coto 25000 pesos visa</code><code>nafta 45000 pesos master 3 cuotas</code><code>farmacia 8500 efectivo</code></div>
         <div class="captura cel" data-lupa="img/cel-chat.webp"><img src="img/cel-chat.webp" alt="Chat de la app: «coto 25000 pesos visa de martín» y la ficha del gasto armada" loading="lazy" width="780" height="1688"></div>
       </div>
@@ -488,7 +491,8 @@ dialog.lupa button { position: fixed; top: 14px; right: 18px; width: 44px; heigh
         <li><div><b>Saldo disponible</b> <span>— efectivo más bancos, menos tarjetas y lo que vence en el mes.</span></div></li>
         <li><div><b>Cada cuenta con su logo</b> <span>— tocás una y ves sus movimientos.</span></div></li>
         <li><div><b>Pesos y dólares</b> <span>— cada uno en su moneda, con el tipo de cambio del mes.</span></div></li>
-        <li><div><b>Préstamos</b> <span>— la deuda, las cuotas y el UVA al día.</span></div></li>
+        <li><div><b>Agenda de pagos y cobros</b> <span>— servicios, cuotas y sueldos del mes; los vencidos arriba y un aviso antes de que venza.</span></div></li>
+        <li><div><b>Préstamos</b> <span>— los que debés y los que te deben, con sus cuotas y el UVA al día.</span></div></li>
       </ul>
     </div>
     <div class="combo aparece">
@@ -559,6 +563,8 @@ dialog.lupa button { position: fixed; top: 14px; right: 18px; width: 44px; heigh
       <details><summary>¿Qué resúmenes puedo importar?</summary><p>Los PDF de los resúmenes de tarjeta, y los extractos de los bancos. Si alguno no se lee solo, se carga igual a mano o por el chat.</p></details>
       <details><summary>¿Mis datos van a algún servidor?</summary><p>No. La libreta queda en tus aparatos. Para pasar del celular a la compu, los cambios viajan cifrados por un buzón que no los puede leer.</p></details>
       <details><summary>¿Se puede usar entre varios en la familia?</summary><p>Sí: cada uno con su celular, y en cada gasto queda quién lo hizo. Todos ven todo.</p></details>
+      <details><summary>¿Me avisa cuando vence algo?</summary><p>Sí. En Configuración › Avisos lo activás en cada aparato: te llega una notificación con lo que vence ese día o al siguiente. También podés pasar los vencimientos al calendario del celular.</p></details>
+      <details><summary>¿Por dónde empiezo?</summary><p>Por la compu de tu casa: ahí vive la libreta de tu familia. La instalás, seguís el asistente y después unís los celulares con el código QR de Configuración › Celulares. Cada familia arma la suya: lo que cargás vos no lo ve nadie más.</p></details>
       <details><summary>¿Y en Mac o iPhone?</summary><p>En Mac se instala como en Windows (por ahora la versión nueva se baja de acá). En el iPhone se usa desde Safari, como una app de la pantalla de inicio: se une a la libreta de tu compu con el mismo código QR que un Android.</p></details>
     </div>
   </div>
@@ -570,6 +576,11 @@ dialog.lupa button { position: fixed; top: 14px; right: 18px; width: 44px; heigh
     <div class="descarga aparece">
       <h2>Probala con tus resúmenes.</h2>
       <p>Bajala, seguí el asistente e importá tu primer resumen.</p>
+      <ol class="orden-empezar">
+        <li><b>Primero en la compu</b> (Windows o Mac): ahí queda la libreta de tu familia.</li>
+        <li><b>Seguí el asistente:</b> quiénes son, tus cuentas y tus tarjetas. Son unos minutos.</li>
+        <li><b>Después los celulares:</b> en la compu, Configuración › Celulares muestra un código QR; lo escaneás con cada celular (Android o iPhone).</li>
+      </ol>
       <div class="acciones">
         <a class="boton primario" href="https://github.com/alejofolgueira-beep/mis-resumenes/releases/latest/download/Mis-Resumenes-Windows.exe">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5 10.5 4.5v7H3zM11.5 4.4 21 3v8.5h-9.5zM3 12.5h7.5v7L3 18.5zM11.5 12.5H21V21l-9.5-1.4z"/></svg>
